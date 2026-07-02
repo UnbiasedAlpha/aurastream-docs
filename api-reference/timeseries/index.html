@@ -2324,26 +2324,26 @@
 <tr>
 <td><code>dtype</code></td>
 <td><code>str</code></td>
-<td>Alpaca, CoinAPI, Oanda, City Index</td>
-<td>Data type: <code>"bars"</code>, <code>"trades"</code>, <code>"quotes"</code>, <code>"orderbook"</code>, <code>"positionbook"</code>, <code>"tick"</code></td>
+<td>Alpaca, CoinAPI, Oanda</td>
+<td>Data type: <code>"bars"</code>, <code>"trades"</code>, <code>"quotes"</code>, <code>"orderbook"</code>, <code>"positionbook"</code></td>
 </tr>
 <tr>
 <td><code>price_type</code></td>
 <td><code>str</code></td>
 <td>Oanda</td>
-<td><code>"A"</code> (ask), <code>"B"</code> (bid), <code>"M"</code> (mid)</td>
+<td><code>"M"</code> (mid), <code>"A"</code> (ask), <code>"B"</code> (bid)</td>
 </tr>
 <tr>
 <td><code>instrument</code></td>
 <td><code>str</code></td>
-<td>Binance, Deribit</td>
-<td><code>"spot"</code> or <code>"derivative"</code></td>
+<td>Binance, Deribit, CoinAPI, FirstRate</td>
+<td>Binance: <code>"spot"</code> / <code>"futures"</code>. Deribit: <code>"derivative"</code>. CoinAPI: <code>"PERPETUAL"</code> / <code>"spot"</code>. FirstRate: <code>"stock"</code> / <code>"etf"</code> / <code>"futures"</code> / <code>"fx"</code> / <code>"options"</code> / <code>"crypto"</code></td>
 </tr>
 <tr>
 <td><code>assetclass</code></td>
 <td><code>str</code></td>
-<td>FirstRate</td>
-<td><code>"stock"</code>, <code>"etf"</code>, <code>"futures"</code>, <code>"fx"</code>, <code>"options"</code>, <code>"crypto"</code></td>
+<td>Alpaca</td>
+<td>Asset class: <code>"equity"</code> or <code>"crypto"</code></td>
 </tr>
 <tr>
 <td><code>category</code></td>
@@ -2354,14 +2354,20 @@
 <tr>
 <td><code>bartype</code></td>
 <td><code>str</code></td>
-<td>TradeStation</td>
-<td>Bar type (e.g., <code>"Minute"</code>)</td>
+<td>City Index</td>
+<td>Bar type: <code>"bar"</code> or <code>"tick"</code></td>
+</tr>
+<tr>
+<td><code>exchange</code></td>
+<td><code>str</code></td>
+<td>CoinAPI</td>
+<td>Exchange identifier for trades/orderbook (e.g., <code>"KRAKENFTS"</code>)</td>
 </tr>
 <tr>
 <td><code>indicator</code></td>
 <td><code>str</code></td>
 <td>Trading Economics</td>
-<td>Economic indicator (e.g., <code>"gdp"</code>)</td>
+<td>Economic indicator (e.g., <code>"stock-market"</code>, <code>"gdp"</code>)</td>
 </tr>
 <tr>
 <td><code>metric</code></td>
@@ -2397,19 +2403,19 @@
 <td><code>filters</code></td>
 <td><code>dict</code></td>
 <td>Nasdaq</td>
-<td>Data filters</td>
+<td>Per-ticker data filters</td>
 </tr>
 <tr>
 <td><code>continuous_contracts</code></td>
 <td><code>bool</code></td>
 <td>FirstRate</td>
-<td>Use continuous contracts for futures</td>
+<td>Use continuous contracts for futures (default: <code>true</code>)</td>
 </tr>
 <tr>
-<td><code>quote</code></td>
+<td><code>vs_currency</code></td>
 <td><code>str</code></td>
 <td>CoinGecko</td>
-<td>Quote currency (default: <code>"usd"</code>)</td>
+<td>Quote currency (default: <code>"USD"</code>)</td>
 </tr>
 </tbody>
 </table>
