@@ -4,7 +4,7 @@ site_description: Unified financial data API — one endpoint, 26+ data sources.
 
 theme:
   name: material
-  logo: assets/logo-white.png
+  logo: assets/logo-icon.png
   favicon: assets/favicon.png
   palette:
     - scheme: slate
@@ -28,7 +28,7 @@ theme:
     - search.suggest
     - search.highlight
   font:
-    text: Inter
+    text: Mulish
     code: JetBrains Mono
 
 nav:
