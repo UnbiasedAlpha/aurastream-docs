@@ -1,0 +1,95 @@
+site_name: Aurastream
+site_url: https://unbiasedalpha.github.io/aurastream-docs
+site_description: Unified financial data API — one endpoint, 26+ data sources.
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Quickstart: getting-started/quickstart.md
+      - Authentication: getting-started/authentication.md
+      - Credentials: getting-started/credentials.md
+  - API Reference:
+      - POST /timeseries: api-reference/timeseries.md
+      - Response Format: api-reference/response-format.md
+  - Data Sources:
+      - Overview: data-sources/overview.md
+      - Crypto:
+          - Binance: data-sources/binance.md
+          - Bybit: data-sources/bybit.md
+          - Deribit: data-sources/deribit.md
+          - dYdX: data-sources/dydx.md
+          - KuCoin: data-sources/kucoin.md
+          - CoinGecko: data-sources/coingecko.md
+          - CoinAPI: data-sources/coinapi.md
+          - Hyperliquid: data-sources/hyperliquid.md
+          - Lyra: data-sources/lyra.md
+      - Equities & Futures:
+          - Yahoo Finance: data-sources/yahoo.md
+          - Alpaca: data-sources/alpaca.md
+          - Polygon: data-sources/polygon.md
+          - FirstRate: data-sources/firstrate.md
+          - TradeStation: data-sources/tradestation.md
+          - Nasdaq Data Link: data-sources/nasdaq.md
+      - Forex & CFDs:
+          - Oanda: data-sources/oanda.md
+          - Kraken: data-sources/kraken.md
+          - City Index: data-sources/cityindex.md
+      - Macro & Economics:
+          - FRED: data-sources/fred.md
+          - Finnhub: data-sources/finnhub.md
+          - Trading Economics: data-sources/tradingeconomics.md
+          - SDMX: data-sources/sdmx.md
+      - Alternative Data:
+          - Nemeton: data-sources/nemeton.md
+          - Open-Meteo: data-sources/openmeteo.md
+          - Visual Crossing: data-sources/visualcrossing.md
+          - Calendar: data-sources/calendar.md
+  - Examples:
+      - Python Basics: examples/python.md
+      - Macro Analysis: examples/macro-analysis.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
