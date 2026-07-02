@@ -22,12 +22,11 @@ US equities, futures, and options data.
 
 ```json
 {
-    "tickerlist": ["AAPL"],
-    "start": "2025-01-01",
-    "end": "2025-06-01",
-    "interval": "5",
+    "tickerlist": ["AAPL", "AMZN"],
+    "start": "2023-01-01",
+    "end": "2025-01-10",
+    "interval": "1d",
     "source": "tradestation",
-    "bartype": "Minute",
     "credentials": {
         "contact": "YOUR_CONTACT",
         "key": "YOUR_KEY",
@@ -38,15 +37,6 @@ US equities, futures, and options data.
 }
 ```
 
-## Parameters
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `bartype` | `str` | `"Minute"` | Bar type (e.g., `"Minute"`, `"Daily"`) |
-
 ## Ticker Format
 
-Standard US symbols: `AAPL`, `MSFT`, `ES`
-
-!!! note
-    The `interval` parameter is the bar size number (e.g., `"5"` for 5-minute bars when `bartype` is `"Minute"`).
+Standard US symbols: `AAPL`, `AMZN`, `MSFT`, `ES`

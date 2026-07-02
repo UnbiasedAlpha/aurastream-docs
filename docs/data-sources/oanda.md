@@ -76,7 +76,7 @@ Forex, metals, CFDs, and order/position book data.
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `dtype` | `str` | `"bars"` | Data type: `"bars"`, `"orderbook"`, `"positionbook"` |
-| `price_type` | `str` | `"A"` | For bars: `"A"` (ask), `"B"` (bid), `"M"` (mid) |
+| `price_type` | `str` | `"M"` | For bars: `"M"` (mid), `"A"` (ask), `"B"` (bid) |
 
 ## Ticker Format
 

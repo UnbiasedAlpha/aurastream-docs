@@ -24,12 +24,11 @@ CFD bars and tick data.
 
     ```json
     {
-        "tickerlist": ["401484347"],
-        "start": "2025-01-01",
-        "end": "2025-06-01",
+        "tickerlist": ["401204130"],
+        "start": "2025-02-05",
+        "end": "2025-02-10",
         "interval": "1d",
         "source": "cityindex",
-        "dtype": "bars",
         "credentials": {
             "username": "YOUR_USER",
             "password": "YOUR_PASS",
@@ -44,12 +43,12 @@ CFD bars and tick data.
 
     ```json
     {
-        "tickerlist": ["401484347"],
-        "start": "2025-06-01",
-        "end": "2025-06-02",
-        "interval": "1m",
+        "tickerlist": ["401204130"],
+        "start": "2025-05-12",
+        "end": "2025-05-15",
+        "interval": "1d",
         "source": "cityindex",
-        "dtype": "tick",
+        "bartype": "tick",
         "credentials": {
             "username": "YOUR_USER",
             "password": "YOUR_PASS",
@@ -64,8 +63,9 @@ CFD bars and tick data.
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `dtype` | `str` | `"bars"` | Data type: `"bars"` or `"tick"` |
+| `bartype` | `str` | `"bar"` | Data type: `"bar"` for OHLCV bars, `"tick"` for tick data |
+| `dtype` | `str` | `"MID"` | Price type: `"MID"`, `"BID"`, `"ASK"` |
 
 ## Ticker Format
 
-City Index market IDs (numeric): `401484347`
+City Index market IDs (numeric): `401204130`

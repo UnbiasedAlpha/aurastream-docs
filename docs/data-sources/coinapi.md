@@ -16,12 +16,11 @@ Crypto bars, trades, and order book data.
 
     ```json
     {
-        "tickerlist": ["BITSTAMP_SPOT_BTC_USD"],
+        "tickerlist": "KRAKENFTS_PERP_BTC_USD",
         "start": "2025-01-01",
-        "end": "2025-01-10",
+        "end": "2025-02-01",
         "interval": "1d",
         "source": "coinapi",
-        "dtype": "bars",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -30,12 +29,14 @@ Crypto bars, trades, and order book data.
 
     ```json
     {
-        "tickerlist": ["BITSTAMP_SPOT_BTC_USD"],
+        "tickerlist": "KRAKENFTS_PERP_BTC_USD",
         "start": "2025-01-01",
-        "end": "2025-01-10",
+        "end": "2025-01-02",
         "interval": "1d",
         "source": "coinapi",
         "dtype": "trades",
+        "exchange": "KRAKENFTS",
+        "instrument": "PERPETUAL",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -44,12 +45,14 @@ Crypto bars, trades, and order book data.
 
     ```json
     {
-        "tickerlist": ["BITSTAMP_SPOT_BTC_USD"],
-        "start": "2025-01-01",
-        "end": "2025-01-10",
+        "tickerlist": "KRAKENFTS_PERP_BTC_USD",
+        "start": "2025-01-01 00:00:00",
+        "end": "2025-01-01 00:01:00",
         "interval": "1d",
         "source": "coinapi",
-        "dtype": "ob",
+        "dtype": "orderbook",
+        "exchange": "KRAKENFTS",
+        "instrument": "PERPETUAL",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -58,8 +61,13 @@ Crypto bars, trades, and order book data.
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `dtype` | `str` | `"bars"` | Data type: `"bars"`, `"trades"`, `"ob"` (order book) |
+| `dtype` | `str` | `"bars"` | Data type: `"bars"`, `"trades"`, `"orderbook"` |
+| `exchange` | `str` | — | Exchange identifier for trades/orderbook (e.g., `"KRAKENFTS"`) |
+| `instrument` | `str` | `"spot"` | Instrument type for trades/orderbook (e.g., `"PERPETUAL"`, `"spot"`) |
 
 ## Ticker Format
 
-CoinAPI symbol IDs: `BITSTAMP_SPOT_BTC_USD`, `COINBASE_SPOT_ETH_USD`
+CoinAPI symbol IDs: `KRAKENFTS_PERP_BTC_USD`, `BITSTAMP_SPOT_BTC_USD`, `COINBASE_SPOT_ETH_USD`
+
+!!! note
+    `tickerlist` can be a single string or a list of strings for this source.

@@ -14,12 +14,12 @@ Global economic indicators by country.
 
 ```json
 {
-    "tickerlist": ["united states"],
+    "tickerlist": ["Mexico"],
     "start": "2021-01-01",
     "end": "2025-01-10",
     "interval": "1d",
     "source": "tradingeconomics",
-    "indicator": "gdp",
+    "indicator": "stock-market",
     "credentials": {"key": "YOUR_KEY"}
 }
 ```
@@ -28,8 +28,8 @@ Global economic indicators by country.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `indicator` | `str` | Yes | Economic indicator: `"gdp"`, `"inflation rate"`, `"interest rate"`, etc. |
+| `indicator` | `str` | Yes | Economic indicator: `"gdp"`, `"stock-market"`, `"inflation rate"`, `"interest rate"`, etc. |
 
 ## Ticker Format
 
-Country names in lowercase: `united states`, `united kingdom`, `germany`, `japan`
+Country names: `Mexico`, `united states`, `united kingdom`, `germany`, `japan`

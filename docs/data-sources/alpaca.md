@@ -16,13 +16,12 @@ US equities and crypto data — bars, trades, and quotes.
 
     ```json
     {
-        "tickerlist": ["AAPL", "TSLA"],
-        "start": "2025-01-01",
-        "end": "2025-06-01",
+        "tickerlist": ["AAPL"],
+        "start": "2021-01-01",
+        "end": "2025-01-10",
         "interval": "1d",
         "source": "alpaca",
         "dtype": "bars",
-        "assetclass": "equity",
         "credentials": {"key": "YOUR_KEY", "secret": "YOUR_SECRET"}
     }
     ```
@@ -31,12 +30,11 @@ US equities and crypto data — bars, trades, and quotes.
 
     ```json
     {
-        "tickerlist": ["BTC/USD", "ETH/USD"],
-        "start": "2025-01-01",
-        "end": "2025-06-01",
+        "tickerlist": ["BTC/USDT"],
+        "start": "2021-01-01",
+        "end": "2025-01-10",
         "interval": "1d",
         "source": "alpaca",
-        "dtype": "bars",
         "assetclass": "crypto",
         "credentials": {"key": "YOUR_KEY", "secret": "YOUR_SECRET"}
     }
@@ -47,12 +45,11 @@ US equities and crypto data — bars, trades, and quotes.
     ```json
     {
         "tickerlist": ["AAPL"],
-        "start": "2025-06-01",
-        "end": "2025-06-02",
-        "interval": "1m",
+        "start": "2025-01-09",
+        "end": "2025-01-10",
+        "interval": "1d",
         "source": "alpaca",
         "dtype": "trades",
-        "assetclass": "equity",
         "credentials": {"key": "YOUR_KEY", "secret": "YOUR_SECRET"}
     }
     ```
@@ -62,9 +59,9 @@ US equities and crypto data — bars, trades, and quotes.
     ```json
     {
         "tickerlist": ["BTC/USD"],
-        "start": "2025-06-01",
-        "end": "2025-06-02",
-        "interval": "1m",
+        "start": "2025-01-10 01:00:00",
+        "end": "2025-01-10 02:00:00",
+        "interval": "1d",
         "source": "alpaca",
         "dtype": "trades",
         "assetclass": "crypto",
@@ -77,12 +74,11 @@ US equities and crypto data — bars, trades, and quotes.
     ```json
     {
         "tickerlist": ["AAPL"],
-        "start": "2025-06-01",
-        "end": "2025-06-02",
-        "interval": "1m",
+        "start": "2025-01-09",
+        "end": "2025-01-10",
+        "interval": "1d",
         "source": "alpaca",
         "dtype": "quotes",
-        "assetclass": "equity",
         "credentials": {"key": "YOUR_KEY", "secret": "YOUR_SECRET"}
     }
     ```
@@ -92,9 +88,9 @@ US equities and crypto data — bars, trades, and quotes.
     ```json
     {
         "tickerlist": ["BTC/USD"],
-        "start": "2025-06-01",
-        "end": "2025-06-02",
-        "interval": "1m",
+        "start": "2025-01-09",
+        "end": "2025-01-10",
+        "interval": "1d",
         "source": "alpaca",
         "dtype": "quotes",
         "assetclass": "crypto",
@@ -112,4 +108,4 @@ US equities and crypto data — bars, trades, and quotes.
 ## Ticker Format
 
 - **Equities:** Standard US symbols: `AAPL`, `TSLA`, `MSFT`
-- **Crypto:** Slash-separated pairs: `BTC/USD`, `ETH/USD`
+- **Crypto:** Slash-separated pairs: `BTC/USD`, `BTC/USDT`, `ETH/USD`

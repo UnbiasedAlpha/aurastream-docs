@@ -28,7 +28,7 @@ Crypto spot and futures market data.
         "end": "2025-06-01",
         "interval": "1d",
         "source": "binance",
-        "instrument": "derivative"
+        "instrument": "futures"
     }
     ```
 
@@ -36,7 +36,7 @@ Crypto spot and futures market data.
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `instrument` | `str` | `"spot"` | `"spot"` for spot markets, `"derivative"` for futures |
+| `instrument` | `str` | `"spot"` | `"spot"` for spot markets, `"futures"` for futures |
 
 ## Ticker Format
 

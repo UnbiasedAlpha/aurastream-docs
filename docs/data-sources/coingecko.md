@@ -12,8 +12,7 @@ Crypto market data using coin names.
     "start": "2025-01-01",
     "end": "2025-01-10",
     "interval": "1d",
-    "source": "coingecko",
-    "quote": "usd"
+    "source": "coingecko"
 }
 ```
 
@@ -21,7 +20,7 @@ Crypto market data using coin names.
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `quote` | `str` | `"usd"` | Quote currency |
+| `vs_currency` | `str` | `"USD"` | Quote currency (e.g., `"USD"`, `"EUR"`) |
 
 ## Ticker Format
 

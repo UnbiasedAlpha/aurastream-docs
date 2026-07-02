@@ -18,10 +18,10 @@ Historical data for stocks, ETFs, futures, FX, options, and crypto.
     {
         "tickerlist": ["AAPL"],
         "start": "2025-01-01",
-        "end": "2025-06-01",
+        "end": "2025-01-05",
         "interval": "1d",
         "source": "firstrate",
-        "assetclass": "stock",
+        "instrument": "stock",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -32,10 +32,10 @@ Historical data for stocks, ETFs, futures, FX, options, and crypto.
     {
         "tickerlist": ["SPY"],
         "start": "2025-01-01",
-        "end": "2025-06-01",
+        "end": "2025-02-01",
         "interval": "1d",
         "source": "firstrate",
-        "assetclass": "etf",
+        "instrument": "etf",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -46,11 +46,10 @@ Historical data for stocks, ETFs, futures, FX, options, and crypto.
     {
         "tickerlist": ["ES"],
         "start": "2025-01-01",
-        "end": "2025-06-01",
+        "end": "2025-02-01",
         "interval": "1d",
         "source": "firstrate",
-        "assetclass": "futures",
-        "continuous_contracts": true,
+        "instrument": "futures",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -59,12 +58,12 @@ Historical data for stocks, ETFs, futures, FX, options, and crypto.
 
     ```json
     {
-        "tickerlist": ["ESH25"],
+        "tickerlist": ["ES"],
         "start": "2025-01-01",
-        "end": "2025-03-01",
+        "end": "2025-02-01",
         "interval": "1d",
         "source": "firstrate",
-        "assetclass": "futures",
+        "instrument": "futures",
         "continuous_contracts": false,
         "credentials": {"key": "YOUR_KEY"}
     }
@@ -76,10 +75,10 @@ Historical data for stocks, ETFs, futures, FX, options, and crypto.
     {
         "tickerlist": ["EURUSD"],
         "start": "2025-01-01",
-        "end": "2025-06-01",
+        "end": "2025-02-01",
         "interval": "1d",
         "source": "firstrate",
-        "assetclass": "fx",
+        "instrument": "fx",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -88,12 +87,12 @@ Historical data for stocks, ETFs, futures, FX, options, and crypto.
 
     ```json
     {
-        "tickerlist": ["AAPL"],
+        "tickerlist": ["SPX"],
         "start": "2025-01-01",
-        "end": "2025-06-01",
+        "end": "2025-01-02",
         "interval": "1d",
         "source": "firstrate",
-        "assetclass": "options",
+        "instrument": "options",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -102,12 +101,12 @@ Historical data for stocks, ETFs, futures, FX, options, and crypto.
 
     ```json
     {
-        "tickerlist": ["BTCUSD"],
+        "tickerlist": ["BTC"],
         "start": "2025-01-01",
-        "end": "2025-06-01",
+        "end": "2025-02-01",
         "interval": "1d",
         "source": "firstrate",
-        "assetclass": "crypto",
+        "instrument": "crypto",
         "credentials": {"key": "YOUR_KEY"}
     }
     ```
@@ -116,12 +115,13 @@ Historical data for stocks, ETFs, futures, FX, options, and crypto.
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `assetclass` | `str` | — | Asset class: `"stock"`, `"etf"`, `"futures"`, `"fx"`, `"options"`, `"crypto"` |
+| `instrument` | `str` | `"stock"` | Instrument type: `"stock"`, `"etf"`, `"futures"`, `"fx"`, `"options"`, `"crypto"` |
 | `continuous_contracts` | `bool` | `true` | For futures: use continuous contracts |
 
 ## Ticker Format
 
 - **Stocks/ETFs:** Standard symbols: `AAPL`, `SPY`
-- **Futures:** Root symbol for continuous (`ES`), contract code for specific (`ESH25`)
+- **Futures:** Root symbol: `ES`, `NQ`, `ZW`
 - **FX:** Concatenated pair: `EURUSD`, `GBPUSD`
-- **Crypto:** Concatenated pair: `BTCUSD`, `ETHUSD`
+- **Options:** Index/stock symbol: `SPX`, `AAPL`
+- **Crypto:** Base symbol: `BTC`, `ETH`

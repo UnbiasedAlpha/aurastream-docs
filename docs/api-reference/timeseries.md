@@ -43,21 +43,22 @@ POST https://api.aurastream.unbiased-alpha.com/timeseries
 
 | Parameter | Type | Used By | Description |
 |---|---|---|---|
-| `dtype` | `str` | Alpaca, CoinAPI, Oanda, City Index | Data type: `"bars"`, `"trades"`, `"quotes"`, `"orderbook"`, `"positionbook"`, `"tick"` |
-| `price_type` | `str` | Oanda | `"A"` (ask), `"B"` (bid), `"M"` (mid) |
-| `instrument` | `str` | Binance, Deribit | `"spot"` or `"derivative"` |
-| `assetclass` | `str` | FirstRate | `"stock"`, `"etf"`, `"futures"`, `"fx"`, `"options"`, `"crypto"` |
+| `dtype` | `str` | Alpaca, CoinAPI, Oanda | Data type: `"bars"`, `"trades"`, `"quotes"`, `"orderbook"`, `"positionbook"` |
+| `price_type` | `str` | Oanda | `"M"` (mid), `"A"` (ask), `"B"` (bid) |
+| `instrument` | `str` | Binance, Deribit, CoinAPI, FirstRate | Binance: `"spot"` / `"futures"`. Deribit: `"derivative"`. CoinAPI: `"PERPETUAL"` / `"spot"`. FirstRate: `"stock"` / `"etf"` / `"futures"` / `"fx"` / `"options"` / `"crypto"` |
+| `assetclass` | `str` | Alpaca | Asset class: `"equity"` or `"crypto"` |
 | `category` | `str` | Bybit | Category (e.g., `"linear"`) |
-| `bartype` | `str` | TradeStation | Bar type (e.g., `"Minute"`) |
-| `indicator` | `str` | Trading Economics | Economic indicator (e.g., `"gdp"`) |
+| `bartype` | `str` | City Index | Bar type: `"bar"` or `"tick"` |
+| `exchange` | `str` | CoinAPI | Exchange identifier for trades/orderbook (e.g., `"KRAKENFTS"`) |
+| `indicator` | `str` | Trading Economics | Economic indicator (e.g., `"stock-market"`, `"gdp"`) |
 | `metric` | `str` | Nemeton | Metric type (e.g., `"cumulative-depth"`, `"depth-ratio"`) |
 | `level` | `int` | Nemeton | Depth level (default: `1000`) |
 | `variables` | `list[str]` | Open-Meteo | Weather variables (e.g., `["temperature_2m"]`) |
 | `db` | `str` | SDMX | Database identifier (e.g., `"BIS"`) |
 | `l1` | `str` | SDMX | Aggregation label (e.g., `"CBRate"`) |
-| `filters` | `dict` | Nasdaq | Data filters |
-| `continuous_contracts` | `bool` | FirstRate | Use continuous contracts for futures |
-| `quote` | `str` | CoinGecko | Quote currency (default: `"usd"`) |
+| `filters` | `dict` | Nasdaq | Per-ticker data filters |
+| `continuous_contracts` | `bool` | FirstRate | Use continuous contracts for futures (default: `true`) |
+| `vs_currency` | `str` | CoinGecko | Quote currency (default: `"USD"`) |
 
 ### Intervals
 

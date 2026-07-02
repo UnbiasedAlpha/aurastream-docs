@@ -14,13 +14,13 @@ Economic and financial datasets.
 
 ```json
 {
-    "tickerlist": ["LBMA/GOLD"],
-    "start": "2025-01-01",
-    "end": "2025-06-01",
+    "tickerlist": ["QDL/FON"],
+    "start": "2021-01-01",
+    "end": "2025-01-10",
     "interval": "1d",
     "source": "nasdaq",
     "credentials": {"key": "YOUR_KEY"},
-    "filters": {}
+    "filters": {"QDL/FON": {"contract_code": 967654}}
 }
 ```
 
@@ -28,8 +28,8 @@ Economic and financial datasets.
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `filters` | `dict` | `{}` | Additional data filters |
+| `filters` | `dict` | `{}` | Per-ticker data filters (e.g., `{"QDL/FON": {"contract_code": 967654}}`) |
 
 ## Ticker Format
 
-Nasdaq Data Link dataset codes: `LBMA/GOLD`, `FRED/GDP`
+Nasdaq Data Link dataset codes: `QDL/FON`, `LBMA/GOLD`, `FRED/GDP`
