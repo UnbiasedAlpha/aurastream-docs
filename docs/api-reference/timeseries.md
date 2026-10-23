@@ -59,7 +59,7 @@ Any other field in the body is passed to the source. Sources ignore fields they 
 | `category` | [Bybit](../data-sources/bybit.md) | `"linear"`, `"inverse"` |
 | `as_of` | FRED | `"realtime_start"`, `"date"` |
 | `as_of` | [CFTC](../data-sources/cftc.md) | `"release"`, `"report"` |
-| `dataset` | [FINRA](../data-sources/finra.md) | `"short_interest"`, `"short_volume"` |
+| `dataset` | [SEC EDGAR](../data-sources/edgar.md) | `"insider"`, `"financials"`, `"earnings"`, `"ftd"`, `"13f"` |
 
 ### Intervals
 

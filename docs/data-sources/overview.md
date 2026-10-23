@@ -1,6 +1,6 @@
 # Data Sources Overview
 
-Aurastream serves historical data from 39 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
+Aurastream serves historical data from 38 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
 
 ## Source Identifiers
 
@@ -41,7 +41,6 @@ Use these values in the `source` field of your request:
 | `finnhub` | [Finnhub](finnhub.md) | Company financials | Your Finnhub key |
 | `edgar` | [SEC EDGAR](edgar.md) | Insider trades, company financials, earnings filings, fails-to-deliver, 13F holdings | Contact email |
 | `cftc` | [CFTC](cftc.md) | Futures positioning (Commitments of Traders) | Not required |
-| `finra` | [FINRA](finra.md) | US stock short interest and short volume | Not required |
 | **Trade flows** | | | |
 | `hmrc` | [UK Trade](hmrc.md) | UK imports and exports by product and country | Not required |
 | `comext` | [EU Trade](comext.md) | EU imports and exports by product and country | Not required |
@@ -70,7 +69,7 @@ How to pass provider credentials is described in [Credentials](../getting-starte
 
 **Company Fundamentals**: Use `finnhub` for company metrics, and `edgar` for financials as reported to the SEC and the times earnings releases were filed.
 
-**Positioning & Flows**: Use `cftc` for who holds each futures market, `finra` for short interest in US stocks, and `edgar` for insider purchases and sales, fails-to-deliver and institutional (13F) holdings.
+**Positioning & Flows**: Use `cftc` for who holds each futures market, and `edgar` for insider purchases and sales, fails-to-deliver and institutional (13F) holdings.
 
 **Energy & Liquidity**: Use `eia` for oil and gas inventories, and `treasury` for government cash and auctions, which drive dollar liquidity.
 

@@ -18,7 +18,7 @@ All 37 sources in [Data Sources](../data-sources/overview.md) are available (ver
 | Equities, FX, futures, CFDs | Yahoo Finance; with your own account: Oanda, Alpaca, Polygon, FirstRate, TradeStation, City Index |
 | Macro and energy | US Treasury, World Bank, SDMX; with a free key: FRED, EIA; with your own key: Trading Economics, Nasdaq Data Link |
 | Fundamentals | SEC EDGAR; with your own key: Finnhub |
-| Positioning and flows | CFTC, FINRA, UK Trade, EU Trade, Hong Kong Trade; with a free key: US Trade |
+| Positioning and flows | CFTC, UK Trade, EU Trade, Hong Kong Trade; with a free key: US Trade |
 | Crypto fundamentals and news | DefiLlama, GDELT; with a free key: CoinGecko |
 | Weather | Open-Meteo; with your own key: Visual Crossing |
 

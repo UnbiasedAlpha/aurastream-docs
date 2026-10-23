@@ -204,7 +204,7 @@ The following sources do not require credentials — omit the `credentials` fiel
 - **Bybit** — public perpetuals market data
 - **Kraken** — public spot and futures market data
 - **Yahoo Finance** — public equities, ETFs, indices, commodities
-- **CFTC**, **FINRA**, **US Treasury**, **DefiLlama** — public positioning, short interest, fiscal and on-chain data
+- **CFTC**, **US Treasury**, **DefiLlama** — public positioning, fiscal and on-chain data
 - **GDELT**, **World Bank**, **UK Trade (HMRC)**, **EU Trade (Eurostat)**, **Hong Kong Trade** — public news and trade statistics
 - **Deribit**, **KuCoin**, **Hyperliquid**, **dYdX**, **Derive (Lyra)** — public crypto derivatives market data
 - **SDMX**, **Open-Meteo** — public statistical series and historical weather

@@ -63,7 +63,7 @@ response = requests.post(URL, headers=headers, json={
 | Bybit | No | Public market data |
 | Kraken | No | Public market data |
 | Yahoo Finance | No | Public data |
-| CFTC, FINRA, US Treasury, DefiLlama, TSA | No | Public data |
+| CFTC, US Treasury, DefiLlama, TSA | No | Public data |
 | GDELT, World Bank, UK Trade (HMRC), EU Trade (Eurostat), Hong Kong Trade | No | Public data |
 
 See the [Credentials guide](credentials.md) for the exact format each source expects.

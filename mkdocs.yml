@@ -82,7 +82,6 @@ nav:
           - Finnhub: data-sources/finnhub.md
           - SEC EDGAR: data-sources/edgar.md
           - CFTC: data-sources/cftc.md
-          - FINRA: data-sources/finra.md
       - Trade Flows:
           - UK Trade (HMRC): data-sources/hmrc.md
           - EU Trade (Eurostat): data-sources/comext.md
