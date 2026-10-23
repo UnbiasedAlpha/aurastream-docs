@@ -1,6 +1,6 @@
 # Aurastream
 
-**One endpoint. 26+ data sources. Zero infrastructure.**
+**One endpoint. 37+ data sources. Zero infrastructure.**
 
 Aurastream is a unified financial data API. Instead of integrating with each exchange and data provider individually, make a single POST request to Aurastream and get OHLCV bars, trades, quotes, funding rates, economic indicators, and more.
 

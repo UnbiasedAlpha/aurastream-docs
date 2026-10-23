@@ -52,6 +52,26 @@ Each data source that requires authentication expects a specific credential form
 {"credentials": {"key": "YOUR_NEMETON_KEY"}}
 ```
 
+### EIA
+
+```json
+{"credentials": {"key": "YOUR_EIA_KEY"}}
+```
+
+### US Census
+
+```json
+{"credentials": {"key": "YOUR_CENSUS_KEY"}}
+```
+
+### SEC EDGAR
+
+The SEC requires a name and contact email instead of a key:
+
+```json
+{"credentials": {"user_agent": "Your Company contact@yourcompany.com"}}
+```
+
 ### Visual Crossing
 
 ```json
@@ -121,4 +141,4 @@ Each data source that requires authentication expects a specific credential form
 
 The following sources do not require credentials — omit the `credentials` field or pass `null`:
 
-Binance, Bybit, Deribit, dYdX, KuCoin, CoinGecko, Hyperliquid, Lyra, Kraken, Yahoo Finance, SDMX, Open-Meteo, Calendar.
+Binance, Bybit, Deribit, dYdX, KuCoin, CoinGecko, Hyperliquid, Lyra, Kraken, Yahoo Finance, SDMX, Open-Meteo, Calendar, CFTC, FINRA, US Treasury, DefiLlama, GDELT, World Bank Prices, UK Trade (HMRC), EU Trade (Eurostat).
