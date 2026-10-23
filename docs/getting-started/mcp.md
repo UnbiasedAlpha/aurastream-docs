@@ -10,15 +10,17 @@ The Aurastream MCP server lets AI assistants that support the [Model Context Pro
 | `get_timeseries` | Calls `/timeseries` and returns a compact table per ticker: the most recent rows, 100 by default, up to 1000. |
 | `get_latest` | The most recent N bars per ticker, without picking dates. |
 
-22 of the sources in [Data Sources](../data-sources/overview.md) are available:
+All 37 sources in [Data Sources](../data-sources/overview.md) are available (version 0.1.2 or later):
 
 | Group | Sources |
 |---|---|
-| Market data | Binance, Bybit, Kraken, Yahoo Finance; with your own account: Oanda, Alpaca, Polygon, FirstRate |
-| Macro and energy | US Treasury, World Bank; with a free key: FRED, EIA |
+| Crypto | Binance, Bybit, Kraken, Deribit, KuCoin, dYdX, Hyperliquid, Derive; with your own key: CoinAPI; with a Nemeton subscription: Nemeton |
+| Equities, FX, futures, CFDs | Yahoo Finance; with your own account: Oanda, Alpaca, Polygon, FirstRate, TradeStation, City Index |
+| Macro and energy | US Treasury, World Bank, SDMX; with a free key: FRED, EIA; with your own key: Trading Economics, Nasdaq Data Link |
 | Fundamentals | SEC EDGAR; with your own key: Finnhub |
 | Positioning and flows | CFTC, FINRA, UK Trade, EU Trade, Hong Kong Trade; with a free key: US Trade |
-| Crypto fundamentals and news | DefiLlama, GDELT |
+| Crypto fundamentals and news | DefiLlama, GDELT; with a free key: CoinGecko |
+| Weather | Open-Meteo; with your own key: Visual Crossing |
 
 The server is open source (MIT): [github.com/UnbiasedAlpha/aurastream-mcp](https://github.com/UnbiasedAlpha/aurastream-mcp).
 
@@ -49,6 +51,15 @@ The server reads every key from environment variables. Provider credentials are 
 | `EIA_API_KEY` | EIA |
 | `CENSUS_API_KEY` | US Trade |
 | `EDGAR_USER_AGENT` | SEC EDGAR: your name and contact email, e.g. `Your Company contact@yourcompany.com` |
+| `NEMETON_API_KEY` | Nemeton: the key from your Nemeton subscription |
+| `COINAPI_KEY` | CoinAPI |
+| `COINGECKO_API_KEY` or `COINGECKO_DEMO_API_KEY` | CoinGecko: a Pro key, or a free Demo key (last 365 days only) |
+| `NASDAQ_DATA_LINK_API_KEY` | Nasdaq Data Link |
+| `TRADINGECONOMICS_API_KEY` | Trading Economics |
+| `TRADESTATION_CLIENT_ID`, `TRADESTATION_CLIENT_SECRET`, `TRADESTATION_REFRESH_TOKEN` | TradeStation |
+| `CITYINDEX_USERNAME`, `CITYINDEX_PASSWORD`, `CITYINDEX_APP_KEY` | City Index |
+| `VISUALCROSSING_API_KEY` | Visual Crossing |
+| `OPENMETEO_API_KEY` | Open-Meteo, optional |
 
 The server turns these into the `credentials` object described in [Credentials](credentials.md). Set only the ones you need.
 
