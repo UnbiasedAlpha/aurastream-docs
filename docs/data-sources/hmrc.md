@@ -15,7 +15,7 @@ UK imports and exports by product and country, from HM Revenue & Customs. London
     ],
     "start": "2020-01-01",
     "end": "2025-01-01",
-    "interval": "1M",
+    "interval": "1m",
     "source": "hmrc"
 }
 ```
@@ -45,6 +45,6 @@ UK imports and exports by product and country, from HM Revenue & Customs. London
 
 ## Intervals
 
-`1M`, stamped at the first day of the month. HMRC publishes each month about six weeks after it ends.
+`1m`, stamped at the first day of the month. HMRC publishes each month about six weeks after it ends.
 
 *Source: HMRC, Open Government Licence v3.0.*

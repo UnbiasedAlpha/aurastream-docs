@@ -14,7 +14,7 @@ US imports and exports by product and country, from the US Census Bureau.
     ],
     "start": "2020-01-01",
     "end": "2025-01-01",
-    "interval": "1M",
+    "interval": "1m",
     "source": "uscensus",
     "credentials": {
         "key": "YOUR_CENSUS_KEY"
@@ -35,4 +35,4 @@ US imports and exports by product and country, from the US Census Bureau.
 
 ## Intervals
 
-`1M`, stamped at the first day of the month. Census publishes each month about five weeks after it ends.
+`1m`, stamped at the first day of the month. Census publishes each month about five weeks after it ends.

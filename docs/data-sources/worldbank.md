@@ -17,7 +17,7 @@ Monthly commodity prices from the World Bank "Pink Sheet", nominal USD, from 196
     ],
     "start": "2000-01-01",
     "end": "2025-01-01",
-    "interval": "1M",
+    "interval": "1m",
     "source": "worldbank"
 }
 ```
@@ -32,6 +32,6 @@ A commodity name or part of it, case-insensitive: `Gold`, `Silver`, `Platinum`, 
 
 ## Intervals
 
-`1M`, stamped at the first day of the month. Updated early each month.
+`1m`, stamped at the first day of the month. Updated early each month.
 
 *Source: World Bank Commodity Price Data (The Pink Sheet), CC BY 4.0.*

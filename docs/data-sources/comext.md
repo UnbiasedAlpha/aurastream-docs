@@ -15,7 +15,7 @@ EU imports and exports by product and partner country, from Eurostat.
     ],
     "start": "2020-01-01",
     "end": "2025-01-01",
-    "interval": "1M",
+    "interval": "1m",
     "source": "comext"
 }
 ```
@@ -39,6 +39,6 @@ EU imports and exports by product and partner country, from Eurostat.
 
 ## Intervals
 
-`1M`, stamped at the first day of the month. Eurostat publishes each month about six weeks after it ends.
+`1m`, stamped at the first day of the month. Eurostat publishes each month about six weeks after it ends.
 
 *Source: Eurostat.*

@@ -65,11 +65,14 @@ POST https://api.aurastream.unbiased-alpha.com/timeseries
 | Interval | Meaning | Examples |
 |---|---|---|
 | `1s`, `5s`, `30s` | Seconds | Bybit, Binance |
-| `1m`, `5m`, `15m`, `30m` | Minutes | Most sources |
+| `1M`, `5M`, `15M`, `30M` | Minutes | Most sources |
 | `1h`, `4h` | Hours | Most sources |
 | `1d` | Daily | All sources |
 | `1w` | Weekly | Most sources |
-| `1M` | Monthly | Some sources |
+| `1m` | Monthly | Some sources |
+
+!!! warning "Case matters"
+    Upper-case `M` is minutes, lower-case `m` is months: `15M` is 15 minutes, `1m` is one month.
 
 !!! note "Interval support varies by source"
     Not every source supports every interval. See individual [data source pages](../data-sources/overview.md) for supported intervals.

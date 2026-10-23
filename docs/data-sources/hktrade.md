@@ -15,7 +15,7 @@ Hong Kong imports and exports of gold, silver, platinum and palladium by country
     ],
     "start": "2020-01-01",
     "end": "2025-01-01",
-    "interval": "1M",
+    "interval": "1m",
     "source": "hktrade"
 }
 ```
@@ -43,6 +43,6 @@ Hong Kong imports and exports of gold, silver, platinum and palladium by country
 
 ## Intervals
 
-`1M`, stamped at the first day of the month, from 2014. The Census and Statistics Department publishes each month about four weeks after it ends.
+`1m`, stamped at the first day of the month, from 2014. The Census and Statistics Department publishes each month about four weeks after it ends.
 
 *Source: Census and Statistics Department, Hong Kong SAR (DATA.GOV.HK).*
