@@ -31,7 +31,7 @@ US imports and exports by product and country, from the US Census Bureau.
 
 ## Fields
 
-`import_value_usd`, `import_quantity`, `export_value_usd`, `export_quantity` (quantity in the code's first unit, e.g. grams of gold content for 7108)
+`import_value_usd`, `export_value_usd`; plus `import_quantity`, `export_quantity` for 10-digit codes (Census only reports quantities there)
 
 ## Intervals
 

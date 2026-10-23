@@ -1,6 +1,6 @@
 # Data Sources Overview
 
-Aurastream supports 37+ data sources across multiple asset classes. Each source is accessed through the same `/timeseries` endpoint — just change the `source` parameter.
+Aurastream supports 38+ data sources across multiple asset classes. Each source is accessed through the same `/timeseries` endpoint — just change the `source` parameter.
 
 ## All Sources
 
@@ -38,8 +38,9 @@ Aurastream supports 37+ data sources across multiple asset classes. Each source 
 | [UK Trade (HMRC)](hmrc.md) | `hmrc` | No | Trade Flows (gold, metals) |
 | [EU Trade (Eurostat)](comext.md) | `comext` | No | Trade Flows (gold, metals) |
 | [US Trade (Census)](uscensus.md) | `uscensus` | Yes | Trade Flows (gold, metals) |
+| [Hong Kong Trade](hktrade.md) | `hktrade` | No | Trade Flows (gold, silver, PGMs to and from China) |
 | [CFTC](cftc.md) | `cftc` | No | Futures Positioning |
 | [FINRA](finra.md) | `finra` | No | Short Interest, Short Volume |
 | [SEC EDGAR](edgar.md) | `edgar` | Contact | Insider Trades, Company Financials |
 | [DefiLlama](defillama.md) | `defillama` | No | Stablecoins, DeFi TVL, DEX Volume |
-| [GDELT](gdelt.md) | `gdelt` | No | News Coverage & Tone (beta) |
+| [GDELT](gdelt.md) | `gdelt` | No | News Coverage & Tone |
