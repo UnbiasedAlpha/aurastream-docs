@@ -77,6 +77,7 @@ nav:
           - World Bank: data-sources/worldbank.md
           - Nasdaq Data Link: data-sources/nasdaq.md
           - Trading Economics: data-sources/tradingeconomics.md
+          - US Economic Calendar: data-sources/econcalendar.md
       - Company Data & Positioning:
           - Finnhub: data-sources/finnhub.md
           - SEC EDGAR: data-sources/edgar.md
@@ -92,6 +93,7 @@ nav:
           - GDELT: data-sources/gdelt.md
           - Open-Meteo: data-sources/openmeteo.md
           - Visual Crossing: data-sources/visualcrossing.md
+          - TSA Checkpoint Numbers: data-sources/tsa.md
   - Examples:
       - Python: examples/python.md
       - Macro Analysis: examples/macro-analysis.md

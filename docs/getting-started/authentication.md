@@ -58,11 +58,12 @@ response = requests.post(URL, headers=headers, json={
 | EIA | Yes | API key (free) |
 | US Census | Yes | API key (free) |
 | SEC EDGAR | Yes | Name and contact email, no registration |
+| US Economic Calendar (`bls`) | Yes | Name and contact email, no registration; other agencies need none |
 | Binance | No | Public market data |
 | Bybit | No | Public market data |
 | Kraken | No | Public market data |
 | Yahoo Finance | No | Public data |
-| CFTC, FINRA, US Treasury, DefiLlama | No | Public data |
+| CFTC, FINRA, US Treasury, DefiLlama, TSA | No | Public data |
 | GDELT, World Bank, UK Trade (HMRC), EU Trade (Eurostat), Hong Kong Trade | No | Public data |
 
 See the [Credentials guide](credentials.md) for the exact format each source expects.

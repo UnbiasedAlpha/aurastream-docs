@@ -100,7 +100,7 @@ Get a free key at [EIA Open Data](https://www.eia.gov/opendata/register.php). `{
 
 Get a free key at [Census API](https://api.census.gov/data/key_signup.html). `{"key": "..."}` works too.
 
-## SEC EDGAR
+## SEC EDGAR and US Economic Calendar (BLS)
 
 ```json
 {
@@ -110,7 +110,7 @@ Get a free key at [Census API](https://api.census.gov/data/key_signup.html). `{"
 }
 ```
 
-The SEC requires automated requests to identify the sender. No registration is needed.
+The SEC and BLS require automated requests to identify the sender. No registration is needed. `econcalendar` needs it only for the `bls` ticker.
 
 ## FirstRate Data
 

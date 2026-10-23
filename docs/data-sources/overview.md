@@ -1,6 +1,6 @@
 # Data Sources Overview
 
-Aurastream serves historical data from 37 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
+Aurastream serves historical data from 39 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
 
 ## Source Identifiers
 
@@ -36,9 +36,10 @@ Use these values in the `source` field of your request:
 | `worldbank` | [World Bank](worldbank.md) | Monthly commodity prices since 1960 | Not required |
 | `nasdaq` | [Nasdaq Data Link](nasdaq.md) | Data tables | Your Nasdaq Data Link key |
 | `tradingeconomics` | [Trading Economics](tradingeconomics.md) | Economic indicators by country | Your Trading Economics key |
+| `econcalendar` | [US Economic Calendar](econcalendar.md) | Release times: jobs, CPI, GDP, retail sales, FOMC | Contact email (for BLS) |
 | **Company data and positioning** | | | |
 | `finnhub` | [Finnhub](finnhub.md) | Company financials | Your Finnhub key |
-| `edgar` | [SEC EDGAR](edgar.md) | US insider trades (Form 4), company financials | Contact email |
+| `edgar` | [SEC EDGAR](edgar.md) | Insider trades, company financials, earnings filings, fails-to-deliver, 13F holdings | Contact email |
 | `cftc` | [CFTC](cftc.md) | Futures positioning (Commitments of Traders) | Not required |
 | `finra` | [FINRA](finra.md) | US stock short interest and short volume | Not required |
 | **Trade flows** | | | |
@@ -51,6 +52,7 @@ Use these values in the `source` field of your request:
 | `gdelt` | [GDELT](gdelt.md) | News coverage and tone | Not required |
 | `openmeteo` | [Open-Meteo](openmeteo.md) | Historical weather by location | Not required |
 | `visualcrossing` | [Visual Crossing](visualcrossing.md) | Historical weather by location | Your Visual Crossing key |
+| `tsa` | [TSA Checkpoint Numbers](tsa.md) | Daily US air travelers screened | Not required |
 
 How to pass provider credentials is described in [Credentials](../getting-started/credentials.md).
 
@@ -64,14 +66,16 @@ How to pass provider credentials is described in [Credentials](../getting-starte
 
 **Futures History**: Use `firstrate` with your FirstRate Data account for long intraday histories of continuous or individual futures contracts.
 
-**Economic Data**: Use `fred` for macro indicators across many countries, and `sdmx` for series published by central banks and statistics agencies.
+**Economic Data**: Use `fred` for macro indicators across many countries, and `sdmx` for series published by central banks and statistics agencies. `econcalendar` gives the scheduled release times of the main US figures and FOMC decisions.
 
-**Company Fundamentals**: Use `finnhub` for company metrics, and `edgar` for financials as reported to the SEC.
+**Company Fundamentals**: Use `finnhub` for company metrics, and `edgar` for financials as reported to the SEC and the times earnings releases were filed.
 
-**Positioning & Flows**: Use `cftc` for who holds each futures market, `finra` for short interest in US stocks, and `edgar` for insider purchases and sales.
+**Positioning & Flows**: Use `cftc` for who holds each futures market, `finra` for short interest in US stocks, and `edgar` for insider purchases and sales, fails-to-deliver and institutional (13F) holdings.
 
 **Energy & Liquidity**: Use `eia` for oil and gas inventories, and `treasury` for government cash and auctions, which drive dollar liquidity.
 
 **Metals & Trade Flows**: Use `hmrc`, `comext`, `uscensus` and `hktrade` for gold, silver and base-metal shipments between countries (e.g. `gold:CH`), and `worldbank` for long monthly price histories.
 
 **Crypto Fundamentals & News**: Use `defillama` for stablecoin supply and DeFi activity, and `gdelt` for news coverage and tone on any topic.
+
+**Consumer Activity**: Use `tsa` for daily US air travel, and `econcalendar` for when the official retail sales and personal spending figures come out.
