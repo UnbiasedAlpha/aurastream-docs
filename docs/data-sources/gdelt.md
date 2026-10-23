@@ -5,7 +5,7 @@ How much worldwide online news covers a topic, and in what tone, from the GDELT 
 **Source:** `gdelt` | **Credentials:** Not required
 
 !!! warning "Beta"
-    Search queries go to GDELT live, which allows one request every few seconds per server and throttles bursts, so they can fail or be slow: keep ranges short and queries few. [News themes](#news-themes) have no such limit.
+    Search queries go to GDELT live, which allows one request every few seconds per server and throttles bursts, so they can fail or be slow: keep ranges short and queries few. When GDELT is throttling, the request fails at once with "GDELT is throttling requests, try again in a minute". [News themes](#news-themes) have no such limit.
 
 ## Example
 

@@ -1,6 +1,6 @@
-site_name: Aurastream
-site_url: https://unbiasedalpha.github.io/aurastream-docs
-site_description: Unified financial data API — one endpoint, 38+ data sources.
+site_name: Aurastream Documentation
+site_url: https://aurastream.unbiased-alpha.com/docs/
+site_description: Unified financial data API — one endpoint, 28 data sources.
 
 theme:
   name: material
@@ -22,13 +22,16 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.expand
     - navigation.top
     - content.code.copy
     - content.code.annotate
     - search.suggest
     - search.highlight
+  icon:
+    repo: fontawesome/brands/github
   font:
-    text: Mulish
+    text: Inter
     code: JetBrains Mono
 
 nav:
@@ -37,58 +40,60 @@ nav:
       - Quickstart: getting-started/quickstart.md
       - Authentication: getting-started/authentication.md
       - Credentials: getting-started/credentials.md
+      - Plans & Limits: getting-started/plans-and-limits.md
+      - Billing & Renewals: getting-started/billing.md
+      - Claude & ChatGPT (MCP): getting-started/mcp.md
   - API Reference:
-      - POST /timeseries: api-reference/timeseries.md
+      - Timeseries: api-reference/timeseries.md
       - Response Format: api-reference/response-format.md
+      - Errors: api-reference/errors.md
   - Data Sources:
       - Overview: data-sources/overview.md
       - Crypto:
           - Binance: data-sources/binance.md
           - Bybit: data-sources/bybit.md
+          - Kraken: data-sources/kraken.md
           - Deribit: data-sources/deribit.md
-          - dYdX: data-sources/dydx.md
           - KuCoin: data-sources/kucoin.md
-          - CoinGecko: data-sources/coingecko.md
-          - CoinAPI: data-sources/coinapi.md
+          - Nemeton: data-sources/nemeton.md
           - Hyperliquid: data-sources/hyperliquid.md
-          - Lyra: data-sources/lyra.md
-      - Equities & Futures:
+          - dYdX: data-sources/dydx.md
+          - Derive (Lyra): data-sources/lyra.md
+          - CoinAPI: data-sources/coinapi.md
+          - CoinGecko: data-sources/coingecko.md
+      - Equities, FX & Commodities:
           - Yahoo Finance: data-sources/yahoo.md
           - Alpaca: data-sources/alpaca.md
           - Polygon: data-sources/polygon.md
-          - FirstRate: data-sources/firstrate.md
-          - TradeStation: data-sources/tradestation.md
-          - Nasdaq Data Link: data-sources/nasdaq.md
-      - Forex & CFDs:
           - Oanda: data-sources/oanda.md
-          - Kraken: data-sources/kraken.md
+          - FirstRate Data: data-sources/firstrate.md
+          - TradeStation: data-sources/tradestation.md
           - City Index: data-sources/cityindex.md
-      - Macro & Economics:
+      - Macro & Energy:
           - FRED: data-sources/fred.md
-          - Finnhub: data-sources/finnhub.md
-          - Trading Economics: data-sources/tradingeconomics.md
-          - SDMX: data-sources/sdmx.md
-          - US Treasury: data-sources/treasury.md
           - EIA: data-sources/eia.md
-      - Commodities & Trade:
-          - World Bank Prices: data-sources/worldbank.md
+          - US Treasury: data-sources/treasury.md
+          - SDMX: data-sources/sdmx.md
+          - World Bank: data-sources/worldbank.md
+          - Nasdaq Data Link: data-sources/nasdaq.md
+          - Trading Economics: data-sources/tradingeconomics.md
+      - Company Data & Positioning:
+          - Finnhub: data-sources/finnhub.md
+          - SEC EDGAR: data-sources/edgar.md
+          - CFTC: data-sources/cftc.md
+          - FINRA: data-sources/finra.md
+      - Trade Flows:
           - UK Trade (HMRC): data-sources/hmrc.md
           - EU Trade (Eurostat): data-sources/comext.md
           - US Trade (Census): data-sources/uscensus.md
           - Hong Kong Trade: data-sources/hktrade.md
-      - Positioning & Filings:
-          - CFTC: data-sources/cftc.md
-          - FINRA: data-sources/finra.md
-          - SEC EDGAR: data-sources/edgar.md
       - Alternative Data:
-          - Nemeton: data-sources/nemeton.md
-          - Open-Meteo: data-sources/openmeteo.md
-          - Visual Crossing: data-sources/visualcrossing.md
-          - Calendar: data-sources/calendar.md
           - DefiLlama: data-sources/defillama.md
           - GDELT: data-sources/gdelt.md
+          - Open-Meteo: data-sources/openmeteo.md
+          - Visual Crossing: data-sources/visualcrossing.md
   - Examples:
-      - Python Basics: examples/python.md
+      - Python: examples/python.md
       - Macro Analysis: examples/macro-analysis.md
 
 markdown_extensions:
@@ -107,8 +112,10 @@ markdown_extensions:
   - toc:
       permalink: true
 
-extra_css:
-  - assets/extra.css
-
 plugins:
   - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/UnbiasedAlpha

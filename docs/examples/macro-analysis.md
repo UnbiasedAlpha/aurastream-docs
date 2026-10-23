@@ -1,206 +1,136 @@
-# Macro Analysis
+# Macro Analysis Example
 
-Building a multi-source macro dashboard using Aurastream's economics and alternative data sources.
+This example replicates a real macro analysis: comparing oil prices, commodity-linked currencies, and the dollar index to visualize how macro forces connect.
 
-## Central Bank Policy Rates
+## The Setup
 
-Compare policy rates across countries using SDMX (BIS data):
+We fetch data from multiple sources to build a cross-asset view:
+
+- **Brent Crude Oil** from Yahoo Finance
+- **USD/NOK** (oil-linked currency) from Oanda
+- **USD/BRL** (commodity-linked currency) from Yahoo Finance
+- **Dollar Index (DXY)** from Yahoo Finance
+
+## Full Code
 
 ```python
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
 
 URL = "https://api.aurastream.unbiased-alpha.com/timeseries"
 HEADERS = {"x-api-key": "YOUR_AURASTREAM_API_KEY"}
 
-payload = {
-    "tickerlist": [
-        "BIS,WS_CBPOL,1.0/D.US",
-        "BIS,WS_CBPOL,1.0/D.GB",
-        "BIS,WS_CBPOL,1.0/D.XM",
-        "BIS,WS_CBPOL,1.0/D.JP"
-    ],
-    "start": "2020-01-01",
-    "end": "2025-06-01",
+
+def to_series(data, ticker, field="Close"):
+    """Extract closing prices as a pandas Series."""
+    ts = data[ticker]
+    s = pd.Series({k: float(v[field]) for k, v in ts.items()})
+    s.index = pd.to_datetime(s.index).normalize()
+    return s.sort_index()
+
+
+# --- 1. Oil (Brent Crude) from Yahoo ---
+oil = requests.post(URL, headers=HEADERS, json={
+    "tickerlist": ["BZ=F"],
+    "start": "2025-01-01",
+    "end": "2026-07-01",
     "interval": "1d",
-    "source": "sdmx",
-    "db": "BIS",
-    "l1": "CBRate"
-}
+    "source": "yahoo",
+}).json()
 
-response = requests.post(URL, json=payload, headers=HEADERS)
-data = response.json()
+# --- 2. USD/NOK from Oanda (requires credentials) ---
+fx_nok = requests.post(URL, headers=HEADERS, json={
+    "tickerlist": ["USD_NOK"],
+    "start": "2025-01-01",
+    "end": "2026-07-01",
+    "interval": "1d",
+    "source": "oanda",
+    "price_type": "A",
+    "credentials": {
+        "id": "YOUR_OANDA_ACCOUNT_ID",
+        "token": "YOUR_OANDA_TOKEN",
+        "environment": "practice"
+    }
+}).json()
 
-# Parse into a single DataFrame of rates
-rates = {}
-labels = {"D.US": "Fed Funds", "D.GB": "BoE", "D.XM": "ECB", "D.JP": "BoJ"}
-for ticker, bars in data.items():
-    df = pd.DataFrame(bars).T
-    df.index = pd.to_datetime(df.index)
-    key = ticker.split("/")[-1]
-    rates[labels.get(key, key)] = df.iloc[:, 0].astype(float)
+# --- 3. USD/BRL from Yahoo ---
+fx_brl = requests.post(URL, headers=HEADERS, json={
+    "tickerlist": ["BRL=X"],
+    "start": "2025-01-01",
+    "end": "2026-07-01",
+    "interval": "1d",
+    "source": "yahoo",
+}).json()
 
-rates_df = pd.DataFrame(rates).ffill()
-print(rates_df.tail(10))
+# --- 4. Dollar Index (DXY) from Yahoo ---
+dxy = requests.post(URL, headers=HEADERS, json={
+    "tickerlist": ["DX-Y.NYB"],
+    "start": "2025-01-01",
+    "end": "2026-07-01",
+    "interval": "1d",
+    "source": "yahoo",
+}).json()
+
+
+# --- Build normalized comparison ---
+brent  = to_series(oil,    "BZ=F")
+usdnok = to_series(fx_nok, "USD_NOK")
+usdbrl = to_series(fx_brl, "BRL=X")
+dollar = to_series(dxy,    "DX-Y.NYB")
+
+# Normalize: percentage change from start date
+norm = pd.DataFrame({
+    "Brent Crude":  brent  / brent.iloc[0]  * 100 - 100,
+    "USD/NOK":      usdnok / usdnok.iloc[0] * 100 - 100,
+    "USD/BRL":      usdbrl / usdbrl.iloc[0]  * 100 - 100,
+    "Dollar Index": dollar / dollar.iloc[0]  * 100 - 100,
+}).ffill()
+
+
+# --- Plot ---
+fig, ax = plt.subplots(figsize=(12, 6))
+norm.plot(ax=ax, linewidth=1.8)
+ax.set_title("Three stories. One macro picture.", fontsize=16, fontweight="bold")
+ax.set_ylabel("% change from Jan 2025")
+ax.axhline(0, color="grey", linewidth=0.5, linestyle="--")
+ax.legend(loc="best", fontsize=11)
+ax.grid(True, alpha=0.3)
+fig.tight_layout()
+plt.savefig("aurastream_macro.png", dpi=150)
+plt.show()
 ```
 
-## Inflation Tracking with FRED
+## What This Shows
+
+Normalizing each series to percentage change from a common start date puts them on one scale, so you can check:
+
+- whether oil and the oil-linked currencies (NOK, BRL) move together over the period
+- how the dollar index moves against commodity prices
+- how much larger the moves in an emerging-market currency (BRL) are
+
+Each source is one request and returns the same `{ticker: {timestamp: {field: value}}}` shape. Daily bars are stamped at different times of day by different sources (Yahoo at midnight New York in UTC, Oanda at the bar close), which is why `to_series` normalizes the index to the date.
+
+## Adding Inflation from FRED
+
+FRED rows hold every published version of a value rather than OHLC fields (see [FRED](../data-sources/fred.md)). To line up US CPI with the prices above as it was known at the time, index it by publication date:
 
 ```python
-indicators = {
-    "CPIAUCSL": "US CPI",
-    "USACPIALLMINMEI": "US CPI (OECD)",
-    "UNRATE": "US Unemployment",
-    "DFF": "Fed Funds Effective",
-}
-
-payload = {
-    "tickerlist": list(indicators.keys()),
-    "start": "2020-01-01",
-    "end": "2025-06-01",
-    "interval": "1d",
+cpi = requests.post(URL, headers=HEADERS, json={
+    "tickerlist": ["CPIAUCSL"],
+    "start": "2025-01-01",
+    "end": "2026-07-01",
+    "interval": "1m",
     "source": "fred",
     "credentials": {"key": "YOUR_FRED_KEY"}
-}
+}).json()
 
-response = requests.post(URL, json=payload, headers=HEADERS)
-data = response.json()
+# One row per publication date; keep the newest period released that day
+released = pd.Series({
+    pd.Timestamp(published).normalize(): max(row["updates"], key=lambda u: u["reference_date"])["value"]
+    for published, row in cpi["CPIAUCSL"].items()
+}).sort_index()
 
-macro = {}
-for ticker, bars in data.items():
-    df = pd.DataFrame(bars).T
-    df.index = pd.to_datetime(df.index)
-    macro[indicators[ticker]] = df.iloc[:, 0].astype(float)
-
-macro_df = pd.DataFrame(macro)
-print(macro_df.dropna(how="all").tail())
-```
-
-## Economic Indicators from Trading Economics
-
-```python
-payload = {
-    "tickerlist": ["united states"],
-    "start": "2024-01-01",
-    "end": "2025-06-01",
-    "interval": "1d",
-    "source": "tradingeconomics",
-    "indicator": "gdp",
-    "credentials": {"key": "YOUR_TE_KEY"}
-}
-
-response = requests.post(URL, json=payload, headers=HEADERS)
-gdp_data = response.json()
-```
-
-## Earnings Calendar
-
-Track upcoming earnings events without credentials:
-
-```python
-payload = {
-    "tickerlist": None,
-    "start": "2025-06-01",
-    "end": "2025-06-30",
-    "interval": "1d",
-    "source": "calendar"
-}
-
-response = requests.post(URL, json=payload, headers=HEADERS)
-calendar = response.json()
-```
-
-## Weather & Commodities
-
-Combine weather data with commodity prices to explore weather-driven trading signals:
-
-```python
-# Wheat futures from FirstRate
-wheat = requests.post(URL, json={
-    "tickerlist": ["ZW"],
-    "start": "2024-01-01",
-    "end": "2025-06-01",
-    "interval": "1d",
-    "source": "firstrate",
-    "assetclass": "futures",
-    "continuous_contracts": True,
-    "credentials": {"key": "YOUR_FIRSTRATE_KEY"}
-}, headers=HEADERS).json()
-
-# Weather in Kansas (major wheat region)
-weather = requests.post(URL, json={
-    "tickerlist": [{"latitude": 38.5, "longitude": -98.0}],
-    "start": "2024-01-01",
-    "end": "2025-06-01",
-    "interval": "1d",
-    "source": "openmeteo",
-    "variables": ["temperature_2m"]
-}, headers=HEADERS).json()
-
-wheat_df = pd.DataFrame(list(wheat.values())[0]).T
-wheat_df.index = pd.to_datetime(wheat_df.index)
-
-weather_key = list(weather.keys())[0]
-weather_df = pd.DataFrame(weather[weather_key]).T
-weather_df.index = pd.to_datetime(weather_df.index)
-
-print("Wheat prices:", wheat_df.shape)
-print("Weather data:", weather_df.shape)
-```
-
-## Multi-Asset Dashboard
-
-Pull everything together into a single analysis:
-
-```python
-from datetime import datetime
-
-START = "2024-06-01"
-END = "2025-06-01"
-
-def fetch(tickerlist, source, **kwargs):
-    payload = {
-        "tickerlist": tickerlist,
-        "start": START, "end": END,
-        "interval": "1d",
-        "source": source,
-        **kwargs,
-    }
-    resp = requests.post(URL, json=payload, headers=HEADERS)
-    resp.raise_for_status()
-    frames = {}
-    for t, bars in resp.json().items():
-        df = pd.DataFrame(bars).T
-        df.index = pd.to_datetime(df.index)
-        df = df.astype(float)
-        frames[t] = df
-    return frames
-
-# 1. Equities
-equities = fetch(["SPY", "QQQ", "IWM"], "yahoo")
-
-# 2. Crypto
-crypto = fetch(["BTCUSDT", "ETHUSDT"], "bybit")
-
-# 3. Forex
-fx = fetch(["EUR_USD", "GBP_USD"], "oanda",
-           credentials={"id": "YOUR_ID", "token": "YOUR_TOKEN",
-                        "environment": "practice"})
-
-# 4. Macro
-rates = fetch(
-    ["BIS,WS_CBPOL,1.0/D.US", "BIS,WS_CBPOL,1.0/D.XM"],
-    "sdmx", db="BIS", l1="CBRate"
-)
-
-# Combine closes
-closes = pd.DataFrame({
-    **{t: f["Close"] for t, f in equities.items()},
-    **{t: f["Close"] for t, f in crypto.items()},
-    **{t: f["Close"] for t, f in fx.items()},
-})
-
-# Normalize to 100
-normalized = closes / closes.iloc[0] * 100
-print(normalized.tail())
+norm["US CPI (as released)"] = (released / released.iloc[0] * 100 - 100).reindex(norm.index, method="ffill")
+# then run the plot block again
 ```

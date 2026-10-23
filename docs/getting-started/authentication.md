@@ -44,7 +44,7 @@ response = requests.post(URL, headers=headers, json={
 ```
 
 !!! info "Credentials are never stored"
-    Aurastream forwards your credentials directly to the upstream data source in real time. They are not saved, logged, or cached.
+    Aurastream uses your credentials only to call the upstream data source for your request. They are not saved to your account.
 
 ## Which sources need credentials?
 
@@ -55,26 +55,14 @@ response = requests.post(URL, headers=headers, json={
 | Polygon | Yes | API key |
 | FRED | Yes | API key |
 | Finnhub | Yes | API key |
-| CoinAPI | Yes | API key |
-| FirstRate | Yes | API key |
-| Nasdaq Data Link | Yes | API key |
-| Trading Economics | Yes | API key |
-| TradeStation | Yes | Contact + key + secret + refresh token + account ID |
-| City Index | Yes | Username + password + key + account IDs |
-| Nemeton | Yes | API key |
-| Visual Crossing | Yes | API key |
+| EIA | Yes | API key (free) |
+| US Census | Yes | API key (free) |
+| SEC EDGAR | Yes | Name and contact email, no registration |
 | Binance | No | Public market data |
 | Bybit | No | Public market data |
-| Deribit | No | Public market data |
-| dYdX | No | Public market data |
-| KuCoin | No | Public market data |
 | Kraken | No | Public market data |
-| CoinGecko | No | Public market data |
-| Hyperliquid | No | Public market data |
-| Lyra | No | Public market data |
 | Yahoo Finance | No | Public data |
-| SDMX | No | Public statistical data |
-| Open-Meteo | No | Public weather data |
-| Calendar | No | Public calendar data |
+| CFTC, FINRA, US Treasury, DefiLlama | No | Public data |
+| GDELT, World Bank, UK Trade (HMRC), EU Trade (Eurostat), Hong Kong Trade | No | Public data |
 
 See the [Credentials guide](credentials.md) for the exact format each source expects.

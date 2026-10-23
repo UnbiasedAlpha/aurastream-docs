@@ -1,30 +1,66 @@
 # CoinGecko
 
-Crypto market data using coin names.
+Daily price, market capitalisation and volume for thousands of coins, from CoinGecko. You need your own CoinGecko key (a free Demo key works).
 
-**Source:** `coingecko` | **Credentials:** Not required
-
-## Example
+## Source ID
 
 ```json
-{
-    "tickerlist": "bitcoin",
-    "start": "2025-01-01",
-    "end": "2025-01-10",
-    "interval": "1d",
-    "source": "coingecko"
+"source": "coingecko"
+```
+
+## Credentials
+
+A paid (Pro) key:
+
+```json
+"credentials": {
+    "key": "your-coingecko-pro-key"
 }
 ```
 
-## Parameters
+or a free Demo key:
 
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `vs_currency` | `str` | `"USD"` | Quote currency (e.g., `"USD"`, `"EUR"`) |
+```json
+"credentials": {
+    "demo_key": "your-coingecko-demo-key"
+}
+```
+
+Get a key at [CoinGecko](https://www.coingecko.com/en/api). Demo keys only reach the last 365 days of history: older requests fail with CoinGecko's message.
 
 ## Ticker Format
 
-CoinGecko uses **coin names** (not symbols): `bitcoin`, `ethereum`, `solana`
+CoinGecko coin IDs (the last part of the coin's page URL on coingecko.com):
 
-!!! note
-    `tickerlist` can be a single string or a list of strings for this source.
+| Example | Coin |
+|---|---|
+| `bitcoin` | Bitcoin |
+| `ethereum` | Ether |
+| `solana` | Solana |
+
+## Supported Intervals
+
+`1d`. CoinGecko picks the granularity from the length of the range, so Aurastream asks for at least 91 days to get daily points and returns the ones in your range, stamped at 00:00 UTC.
+
+## Fields
+
+`prices`, `market_caps`, `total_volumes`
+
+## Parameters
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `vs_currency` | `"USD"`, `"EUR"`, ... | `"USD"` | Quote currency |
+
+## Examples
+
+```python
+response = requests.post(URL, headers=HEADERS, json={
+    "tickerlist": ["bitcoin", "ethereum"],
+    "start": "2026-01-01",
+    "end": "2026-03-01",
+    "interval": "1d",
+    "source": "coingecko",
+    "credentials": {"demo_key": "your-coingecko-demo-key"},
+})
+```

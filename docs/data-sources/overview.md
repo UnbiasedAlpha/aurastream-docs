@@ -1,46 +1,77 @@
 # Data Sources Overview
 
-Aurastream supports 38+ data sources across multiple asset classes. Each source is accessed through the same `/timeseries` endpoint — just change the `source` parameter.
+Aurastream serves historical data from 37 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
 
-## All Sources
+## Source Identifiers
 
-| Source | `source` value | Credentials | Asset Classes |
+Use these values in the `source` field of your request:
+
+| `source` | Provider | Data | Credentials |
 |---|---|---|---|
-| [Binance](binance.md) | `binance` | No | Crypto Spot, Futures |
-| [Bybit](bybit.md) | `bybit` | No | Crypto Perpetuals |
-| [Deribit](deribit.md) | `deribit` | No | Crypto Derivatives |
-| [dYdX](dydx.md) | `dydx` | No | Crypto Perpetuals |
-| [KuCoin](kucoin.md) | `kucoin` | No | Crypto Spot, Indices |
-| [CoinGecko](coingecko.md) | `coingecko` | No | Crypto Market Data |
-| [CoinAPI](coinapi.md) | `coinapi` | Yes | Crypto Bars, Trades, Order Book |
-| [Hyperliquid](hyperliquid.md) | `hyperliquid` | No | Crypto Perpetuals |
-| [Lyra](lyra.md) | `lyra` | No | Crypto Options |
-| [Yahoo Finance](yahoo.md) | `yahoo` | No | Equities, ETFs, Indices |
-| [Alpaca](alpaca.md) | `alpaca` | Yes | US Equities, Crypto |
-| [Polygon](polygon.md) | `polygon` | Yes | US Equities, Options, Forex |
-| [FirstRate](firstrate.md) | `firstrate` | Yes | Stocks, ETFs, Futures, FX, Options, Crypto |
-| [TradeStation](tradestation.md) | `tradestation` | Yes | US Equities, Futures, Options |
-| [Nasdaq Data Link](nasdaq.md) | `nasdaq` | Yes | Economic Datasets |
-| [Oanda](oanda.md) | `oanda` | Yes | Forex, Metals, CFDs |
-| [Kraken](kraken.md) | `kraken` | No | Crypto Futures |
-| [City Index](cityindex.md) | `cityindex` | Yes | CFDs |
-| [FRED](fred.md) | `fred` | Yes | Economic Indicators |
-| [Finnhub](finnhub.md) | `finnhub` | Yes | Company Financials |
-| [Trading Economics](tradingeconomics.md) | `tradingeconomics` | Yes | Global Macro |
-| [SDMX](sdmx.md) | `sdmx` | No | Central Bank Statistics |
-| [Nemeton](nemeton.md) | `nemeton` | Yes | Crypto Order Book Metrics |
-| [Open-Meteo](openmeteo.md) | `openmeteo` | No | Weather Data |
-| [Visual Crossing](visualcrossing.md) | `visualcrossing` | Yes | Historical Weather |
-| [Calendar](calendar.md) | `calendar` | No | Earnings & Economic Events |
-| [US Treasury](treasury.md) | `treasury` | No | Government Cash (TGA), Debt, Auctions |
-| [EIA](eia.md) | `eia` | Yes | Energy Inventories, Production, Prices |
-| [World Bank Prices](worldbank.md) | `worldbank` | No | Monthly Commodity Prices |
-| [UK Trade (HMRC)](hmrc.md) | `hmrc` | No | Trade Flows (gold, metals) |
-| [EU Trade (Eurostat)](comext.md) | `comext` | No | Trade Flows (gold, metals) |
-| [US Trade (Census)](uscensus.md) | `uscensus` | Yes | Trade Flows (gold, metals) |
-| [Hong Kong Trade](hktrade.md) | `hktrade` | No | Trade Flows (gold, silver, PGMs to and from China) |
-| [CFTC](cftc.md) | `cftc` | No | Futures Positioning |
-| [FINRA](finra.md) | `finra` | No | Short Interest, Short Volume |
-| [SEC EDGAR](edgar.md) | `edgar` | Contact | Insider Trades, Company Financials |
-| [DefiLlama](defillama.md) | `defillama` | No | Stablecoins, DeFi TVL, DEX Volume |
-| [GDELT](gdelt.md) | `gdelt` | No | News Coverage & Tone |
+| **Crypto** | | | |
+| `binance` | [Binance](binance.md) | Spot, USD-M perpetual futures, funding rates | Not required |
+| `bybit` | [Bybit](bybit.md) | Perpetuals (linear and inverse) | Not required |
+| `kraken` | [Kraken](kraken.md) | Futures, spot | Not required |
+| `deribit` | [Deribit](deribit.md) | Futures, perpetuals, options | Not required |
+| `kucoin` | [KuCoin](kucoin.md) | Futures contracts and indices | Not required |
+| `nemeton` | [Nemeton](nemeton.md) | Order book signals (depth, imbalance, spread) | Nemeton subscription |
+| `hyperliquid` | [Hyperliquid](hyperliquid.md) | Perpetuals | Not required |
+| `dydx` | [dYdX](dydx.md) | v4 perpetuals | Not required |
+| `lyra` | [Derive (Lyra)](lyra.md) | Options and perpetuals trades | Not required |
+| `coinapi` | [CoinAPI](coinapi.md) | Bars from hundreds of crypto exchanges | Your CoinAPI key |
+| `coingecko` | [CoinGecko](coingecko.md) | Coin prices, market caps, volumes | Your CoinGecko key (free Demo key works) |
+| **Equities, FX and commodities** | | | |
+| `yahoo` | [Yahoo Finance](yahoo.md) | Equities, ETFs, indices, futures, forex; earnings | Not required |
+| `alpaca` | [Alpaca](alpaca.md) | US equities, crypto (bars, trades, quotes) | Your Alpaca account |
+| `polygon` | [Polygon](polygon.md) | US equities, options, forex, crypto | Your Polygon key |
+| `oanda` | [Oanda](oanda.md) | Forex, metals, CFDs; order and position books | Your Oanda account |
+| `firstrate` | [FirstRate Data](firstrate.md) | Historical US stocks, ETFs, futures, FX, indices, crypto; option chains | Your FirstRate Data account |
+| `tradestation` | [TradeStation](tradestation.md) | US stocks, ETFs, futures, indices | Your TradeStation account |
+| `cityindex` | [City Index](cityindex.md) | CFDs: indices, FX, commodities, shares | Your City Index account |
+| **Macro and energy** | | | |
+| `fred` | [FRED](fred.md) | Economic indicators (CPI, GDP, rates) | Free FRED key |
+| `eia` | [EIA](eia.md) | Energy inventories, production, prices | Free EIA key |
+| `treasury` | [US Treasury](treasury.md) | Government cash (TGA), debt, auctions | Not required |
+| `sdmx` | [SDMX](sdmx.md) | Central bank and statistics agency series (BIS, ECB, IMF, OECD...) | Not required |
+| `worldbank` | [World Bank](worldbank.md) | Monthly commodity prices since 1960 | Not required |
+| `nasdaq` | [Nasdaq Data Link](nasdaq.md) | Data tables | Your Nasdaq Data Link key |
+| `tradingeconomics` | [Trading Economics](tradingeconomics.md) | Economic indicators by country | Your Trading Economics key |
+| **Company data and positioning** | | | |
+| `finnhub` | [Finnhub](finnhub.md) | Company financials | Your Finnhub key |
+| `edgar` | [SEC EDGAR](edgar.md) | US insider trades (Form 4), company financials | Contact email |
+| `cftc` | [CFTC](cftc.md) | Futures positioning (Commitments of Traders) | Not required |
+| `finra` | [FINRA](finra.md) | US stock short interest and short volume | Not required |
+| **Trade flows** | | | |
+| `hmrc` | [UK Trade](hmrc.md) | UK imports and exports by product and country | Not required |
+| `comext` | [EU Trade](comext.md) | EU imports and exports by product and country | Not required |
+| `uscensus` | [US Trade](uscensus.md) | US imports and exports by product and country | Free Census key |
+| `hktrade` | [Hong Kong Trade](hktrade.md) | Hong Kong gold, silver, PGM trade by country (China demand) | Not required |
+| **Alternative data** | | | |
+| `defillama` | [DefiLlama](defillama.md) | Stablecoin supply, DeFi TVL, DEX volume, fees | Not required |
+| `gdelt` | [GDELT](gdelt.md) | News coverage and tone | Not required |
+| `openmeteo` | [Open-Meteo](openmeteo.md) | Historical weather by location | Not required |
+| `visualcrossing` | [Visual Crossing](visualcrossing.md) | Historical weather by location | Your Visual Crossing key |
+
+How to pass provider credentials is described in [Credentials](../getting-started/credentials.md).
+
+## Choosing a Source
+
+**Forex & Metals**: Use `oanda` with your own account for bid, ask and mid bars and Oanda's order and position books, or `yahoo` without an account.
+
+**Crypto**: Use `binance`, `bybit` or `kraken` for exchange-native bars without credentials; `binance` also has funding rates, `deribit` covers options and `kucoin` its futures and indices. For on-chain perpetuals use `hyperliquid` or `dydx`; `coinapi` and `coingecko` cover many more exchanges and coins with your own key.
+
+**US Equities**: Use `alpaca` or `polygon` with your own account for intraday bars, trades and quotes, or `yahoo` without an account.
+
+**Futures History**: Use `firstrate` with your FirstRate Data account for long intraday histories of continuous or individual futures contracts.
+
+**Economic Data**: Use `fred` for macro indicators across many countries, and `sdmx` for series published by central banks and statistics agencies.
+
+**Company Fundamentals**: Use `finnhub` for company metrics, and `edgar` for financials as reported to the SEC.
+
+**Positioning & Flows**: Use `cftc` for who holds each futures market, `finra` for short interest in US stocks, and `edgar` for insider purchases and sales.
+
+**Energy & Liquidity**: Use `eia` for oil and gas inventories, and `treasury` for government cash and auctions, which drive dollar liquidity.
+
+**Metals & Trade Flows**: Use `hmrc`, `comext`, `uscensus` and `hktrade` for gold, silver and base-metal shipments between countries (e.g. `gold:CH`), and `worldbank` for long monthly price histories.
+
+**Crypto Fundamentals & News**: Use `defillama` for stablecoin supply and DeFi activity, and `gdelt` for news coverage and tone on any topic.

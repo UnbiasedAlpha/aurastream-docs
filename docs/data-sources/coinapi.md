@@ -1,73 +1,54 @@
 # CoinAPI
 
-Crypto bars, trades, and order book data.
+OHLCV bars for crypto spot and derivatives markets across hundreds of exchanges, from CoinAPI. You need your own CoinAPI key.
 
-**Source:** `coinapi` | **Credentials:** Required
+## Source ID
+
+```json
+"source": "coinapi"
+```
 
 ## Credentials
 
 ```json
-{"credentials": {"key": "YOUR_COINAPI_KEY"}}
+"credentials": {
+    "key": "your-coinapi-key"
+}
 ```
 
-## Examples
-
-=== "Bars"
-
-    ```json
-    {
-        "tickerlist": "KRAKENFTS_PERP_BTC_USD",
-        "start": "2025-01-01",
-        "end": "2025-02-01",
-        "interval": "1d",
-        "source": "coinapi",
-        "credentials": {"key": "YOUR_KEY"}
-    }
-    ```
-
-=== "Trades"
-
-    ```json
-    {
-        "tickerlist": "KRAKENFTS_PERP_BTC_USD",
-        "start": "2025-01-01",
-        "end": "2025-01-02",
-        "interval": "1d",
-        "source": "coinapi",
-        "dtype": "trades",
-        "exchange": "KRAKENFTS",
-        "instrument": "PERPETUAL",
-        "credentials": {"key": "YOUR_KEY"}
-    }
-    ```
-
-=== "Order Book"
-
-    ```json
-    {
-        "tickerlist": "KRAKENFTS_PERP_BTC_USD",
-        "start": "2025-01-01 00:00:00",
-        "end": "2025-01-01 00:01:00",
-        "interval": "1d",
-        "source": "coinapi",
-        "dtype": "orderbook",
-        "exchange": "KRAKENFTS",
-        "instrument": "PERPETUAL",
-        "credentials": {"key": "YOUR_KEY"}
-    }
-    ```
-
-## Parameters
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `dtype` | `str` | `"bars"` | Data type: `"bars"`, `"trades"`, `"orderbook"` |
-| `exchange` | `str` | — | Exchange identifier for trades/orderbook (e.g., `"KRAKENFTS"`) |
-| `instrument` | `str` | `"spot"` | Instrument type for trades/orderbook (e.g., `"PERPETUAL"`, `"spot"`) |
+Get a key at [CoinAPI](https://www.coinapi.io/). Requests use your CoinAPI plan's credits.
 
 ## Ticker Format
 
-CoinAPI symbol IDs: `KRAKENFTS_PERP_BTC_USD`, `BITSTAMP_SPOT_BTC_USD`, `COINBASE_SPOT_ETH_USD`
+CoinAPI symbol IDs, `EXCHANGE_TYPE_BASE_QUOTE`:
 
-!!! note
-    `tickerlist` can be a single string or a list of strings for this source.
+| Example | Instrument |
+|---|---|
+| `BITSTAMP_SPOT_BTC_USD` | Bitcoin / US dollar on Bitstamp |
+| `COINBASE_SPOT_ETH_USD` | Ether / US dollar on Coinbase |
+| `KRAKENFTS_PERP_BTC_USD` | Bitcoin perpetual on Kraken Futures |
+
+## Supported Intervals
+
+Seconds (`1s`), minutes (`1M`, `5M`, ...), hours (`1h`), days (`1d`), months (`1m`) and years (`1y`), in the multiples CoinAPI accepts. Bars are stamped at their close, in UTC.
+
+## Fields
+
+`price_open`, `price_high`, `price_low`, `price_close`, `volume_traded`, `trades_count`
+
+## Parameters
+
+No source-specific parameters for bars.
+
+## Examples
+
+```python
+response = requests.post(URL, headers=HEADERS, json={
+    "tickerlist": ["BITSTAMP_SPOT_BTC_USD", "COINBASE_SPOT_ETH_USD"],
+    "start": "2025-01-01",
+    "end": "2025-02-01",
+    "interval": "1d",
+    "source": "coinapi",
+    "credentials": {"key": "your-coinapi-key"},
+})
+```

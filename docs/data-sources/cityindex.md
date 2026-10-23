@@ -1,71 +1,61 @@
 # City Index
 
-CFD bars and tick data.
+Bars and ticks for City Index CFD markets (indices, FX, commodities, shares) from your City Index account.
 
-**Source:** `cityindex` | **Credentials:** Required
+## Source ID
+
+```json
+"source": "cityindex"
+```
 
 ## Credentials
 
 ```json
-{
-    "credentials": {
-        "username": "YOUR_USERNAME",
-        "password": "YOUR_PASSWORD",
-        "key": "YOUR_APP_KEY",
-        "client_account_id": "YOUR_CLIENT_ACCOUNT_ID",
-        "trading_account_id": "YOUR_TRADING_ACCOUNT_ID"
-    }
+"credentials": {
+    "username": "your-username",
+    "password": "your-password",
+    "key": "your-app-key"
 }
 ```
 
-## Examples
-
-=== "Bars"
-
-    ```json
-    {
-        "tickerlist": ["401204130"],
-        "start": "2025-02-05",
-        "end": "2025-02-10",
-        "interval": "1d",
-        "source": "cityindex",
-        "credentials": {
-            "username": "YOUR_USER",
-            "password": "YOUR_PASS",
-            "key": "YOUR_KEY",
-            "client_account_id": "YOUR_CLIENT_ID",
-            "trading_account_id": "YOUR_TRADING_ID"
-        }
-    }
-    ```
-
-=== "Tick"
-
-    ```json
-    {
-        "tickerlist": ["401204130"],
-        "start": "2025-05-12",
-        "end": "2025-05-15",
-        "interval": "1d",
-        "source": "cityindex",
-        "bartype": "tick",
-        "credentials": {
-            "username": "YOUR_USER",
-            "password": "YOUR_PASS",
-            "key": "YOUR_KEY",
-            "client_account_id": "YOUR_CLIENT_ID",
-            "trading_account_id": "YOUR_TRADING_ID"
-        }
-    }
-    ```
-
-## Parameters
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `bartype` | `str` | `"bar"` | Data type: `"bar"` for OHLCV bars, `"tick"` for tick data |
-| `dtype` | `str` | `"MID"` | Price type: `"MID"`, `"BID"`, `"ASK"` |
+The app key comes from City Index's API access. A wrong login fails with City Index's message.
 
 ## Ticker Format
 
-City Index market IDs (numeric): `401204130`
+City Index market IDs (numbers, as text):
+
+| Example | Market |
+|---|---|
+| `"401204130"` | A City Index market ID |
+
+## Supported Intervals
+
+Minutes (`1M`, `5M`, ...), hours (`1h`, ...) and days (`1d`).
+
+## Fields
+
+`Open`, `High`, `Low`, `Close` for bars; `Price` for ticks.
+
+## Parameters
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `bartype` | `"bar"`, `"tick"` | `"bar"` | Bars or ticks |
+| `dtype` | `"MID"`, `"BID"`, `"ASK"` | `"MID"` | Price type |
+
+## Examples
+
+```python
+response = requests.post(URL, headers=HEADERS, json={
+    "tickerlist": ["401204130"],
+    "start": "2025-02-03",
+    "end": "2025-02-10",
+    "interval": "1h",
+    "source": "cityindex",
+    "credentials": {
+        "username": "your-username",
+        "password": "your-password",
+        "key": "your-app-key",
+    },
+})
+```
