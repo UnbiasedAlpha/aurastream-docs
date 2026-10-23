@@ -1,6 +1,6 @@
 site_name: Aurastream
 site_url: https://unbiasedalpha.github.io/aurastream-docs
-site_description: Unified financial data API — one endpoint, 26+ data sources.
+site_description: Unified financial data API — one endpoint, 38+ data sources.
 
 theme:
   name: material
@@ -68,11 +68,25 @@ nav:
           - Finnhub: data-sources/finnhub.md
           - Trading Economics: data-sources/tradingeconomics.md
           - SDMX: data-sources/sdmx.md
+          - US Treasury: data-sources/treasury.md
+          - EIA: data-sources/eia.md
+      - Commodities & Trade:
+          - World Bank Prices: data-sources/worldbank.md
+          - UK Trade (HMRC): data-sources/hmrc.md
+          - EU Trade (Eurostat): data-sources/comext.md
+          - US Trade (Census): data-sources/uscensus.md
+          - Hong Kong Trade: data-sources/hktrade.md
+      - Positioning & Filings:
+          - CFTC: data-sources/cftc.md
+          - FINRA: data-sources/finra.md
+          - SEC EDGAR: data-sources/edgar.md
       - Alternative Data:
           - Nemeton: data-sources/nemeton.md
           - Open-Meteo: data-sources/openmeteo.md
           - Visual Crossing: data-sources/visualcrossing.md
           - Calendar: data-sources/calendar.md
+          - DefiLlama: data-sources/defillama.md
+          - GDELT: data-sources/gdelt.md
   - Examples:
       - Python Basics: examples/python.md
       - Macro Analysis: examples/macro-analysis.md
