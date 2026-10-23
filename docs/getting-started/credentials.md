@@ -88,6 +88,18 @@ Get your API key at [Finnhub](https://finnhub.io/).
 
 Get a free key at [EIA Open Data](https://www.eia.gov/opendata/register.php). `{"key": "..."}` works too.
 
+## BEA
+
+```json
+{
+    "credentials": {
+        "api_key": "your-bea-api-key"
+    }
+}
+```
+
+Get a free key at [BEA API signup](https://apps.bea.gov/API/signup/) and activate it with the link in the email. `{"key": "..."}` works too.
+
 ## US Census
 
 ```json

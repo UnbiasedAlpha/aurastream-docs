@@ -57,6 +57,7 @@ response = requests.post(URL, headers=headers, json={
 | Finnhub | Yes | API key |
 | EIA | Yes | API key (free) |
 | US Census | Yes | API key (free) |
+| BEA | Yes | API key (free) |
 | SEC EDGAR | Yes | Name and contact email, no registration |
 | US Economic Calendar (`bls`) | Yes | Name and contact email, no registration; other agencies need none |
 | Binance | No | Public market data |

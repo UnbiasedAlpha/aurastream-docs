@@ -78,6 +78,7 @@ nav:
           - Nasdaq Data Link: data-sources/nasdaq.md
           - Trading Economics: data-sources/tradingeconomics.md
           - US Economic Calendar: data-sources/econcalendar.md
+          - BEA National Accounts: data-sources/bea.md
       - Company Data & Positioning:
           - Finnhub: data-sources/finnhub.md
           - SEC EDGAR: data-sources/edgar.md
@@ -85,7 +86,7 @@ nav:
       - Trade Flows:
           - UK Trade (HMRC): data-sources/hmrc.md
           - EU Trade (Eurostat): data-sources/comext.md
-          - US Trade (Census): data-sources/uscensus.md
+          - US Census (Trade, Retail): data-sources/uscensus.md
           - Hong Kong Trade: data-sources/hktrade.md
       - Alternative Data:
           - DefiLlama: data-sources/defillama.md

@@ -1,6 +1,6 @@
 # Data Sources Overview
 
-Aurastream serves historical data from 38 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
+Aurastream serves historical data from 39 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
 
 ## Source Identifiers
 
@@ -36,6 +36,7 @@ Use these values in the `source` field of your request:
 | `worldbank` | [World Bank](worldbank.md) | Monthly commodity prices since 1960 | Not required |
 | `nasdaq` | [Nasdaq Data Link](nasdaq.md) | Data tables | Your Nasdaq Data Link key |
 | `tradingeconomics` | [Trading Economics](tradingeconomics.md) | Economic indicators by country | Your Trading Economics key |
+| `bea` | [BEA National Accounts](bea.md) | Consumer spending (PCE), PCE inflation, income, saving, GDP | Free BEA key |
 | `econcalendar` | [US Economic Calendar](econcalendar.md) | Release times: jobs, CPI, GDP, retail sales, FOMC | Contact email (for BLS) |
 | **Company data and positioning** | | | |
 | `finnhub` | [Finnhub](finnhub.md) | Company financials | Your Finnhub key |
@@ -44,7 +45,7 @@ Use these values in the `source` field of your request:
 | **Trade flows** | | | |
 | `hmrc` | [UK Trade](hmrc.md) | UK imports and exports by product and country | Not required |
 | `comext` | [EU Trade](comext.md) | EU imports and exports by product and country | Not required |
-| `uscensus` | [US Trade](uscensus.md) | US imports and exports by product and country | Free Census key |
+| `uscensus` | [US Census](uscensus.md) | US imports and exports by product and country; retail sales | Free Census key |
 | `hktrade` | [Hong Kong Trade](hktrade.md) | Hong Kong gold, silver, PGM trade by country (China demand) | Not required |
 | **Alternative data** | | | |
 | `defillama` | [DefiLlama](defillama.md) | Stablecoin supply, DeFi TVL, DEX volume, fees | Not required |
@@ -77,4 +78,4 @@ How to pass provider credentials is described in [Credentials](../getting-starte
 
 **Crypto Fundamentals & News**: Use `defillama` for stablecoin supply and DeFi activity, and `gdelt` for news coverage and tone on any topic.
 
-**Consumer Activity**: Use `tsa` for daily US air travel, and `econcalendar` for when the official retail sales and personal spending figures come out.
+**Consumer Activity**: Use `uscensus` (`dataset: "retail"`) for monthly retail sales by store type, `bea` for personal consumption expenditures, income and saving, and `tsa` for daily US air travel. Consumer credit (Federal Reserve G.19) is in `fred` (`TOTALSL`, `REVOLSL`, `NONREVSL`). `econcalendar` gives the release times.
