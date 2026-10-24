@@ -1,6 +1,6 @@
 # SEC EDGAR
 
-Insider trades (Form 4), reported company financials (XBRL), earnings release filings, fails-to-deliver and institutional holdings (Form 13F) from the US Securities and Exchange Commission.
+Insider trades (Form 4), reported company financials (XBRL), earnings release filings, fails-to-deliver, institutional holdings (Form 13F) and mutual fund and ETF holdings (Form N-PORT) from the US Securities and Exchange Commission.
 
 **Source:** `edgar` | **Credentials:** Contact string required by the SEC
 
@@ -26,9 +26,10 @@ Insider trades (Form 4), reported company financials (XBRL), earnings release fi
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `dataset` | `str` | No | `"insider"` (default, Form 4 trades), `"financials"` (reported figures), `"earnings"` (earnings release filings), `"ftd"` (fails-to-deliver) or `"13f"` (institutional holdings) |
+| `dataset` | `str` | No | `"insider"` (default, Form 4 trades), `"financials"` (reported figures), `"earnings"` (earnings release filings), `"ftd"` (fails-to-deliver), `"13f"` (institutional holdings) or `"nport"` (fund holdings) |
 | `concepts` | `list[str]` | No | XBRL concepts for `financials`, e.g. `["Revenues", "CostOfGoldProductsAndServices"]`. Default: revenue, costs, income, EPS, cash flow, capex, cash, debt, equity, shares |
 | `period` | `str` | No | `"quarter"` (default) or `"annual"` for `financials` |
+| `top` | `int` | No | `nport` only: keep the largest N positions of each filing (default: all) |
 
 ## Ticker Format
 
@@ -36,6 +37,7 @@ US stock symbols (`AAPL`) or SEC CIK numbers (`320193`, `1164727` for Newmont).
 
 - `ftd`: a symbol (`GME`) or a 9-character CUSIP.
 - `13f`: the manager's CIK, e.g. `1067983` for Berkshire Hathaway. Find a manager's CIK with [EDGAR company search](https://www.sec.gov/edgar/searchedgar/companysearch).
+- `nport`: a mutual fund or ETF ticker (`VTSAX`, `IVV`, `ARKK`, `SPY`), or the fund's SEC series id (`S000002848`).
 
 ## Fields
 
@@ -78,10 +80,23 @@ US stock symbols (`AAPL`) or SEC CIK numbers (`320193`, `1164727` for Newmont).
 | `holdings` | List of positions: `issuer`, `class`, `cusip`, `value`, `shares`, `share_type` (`SH` shares or `PRN` principal), `put_call`, `discretion` |
 | `form`, `accession` | `13F-HR` or `13F-HR/A`, SEC accession number |
 
+**`nport`**: one row per Form N-PORT filing (and amendments), stamped when it became public:
+
+| Field | Description |
+|---|---|
+| `fund`, `series_id`, `report_period` | Fund name, SEC series id, month end the holdings refer to |
+| `total_assets`, `net_assets` | In US dollars |
+| `flow_sales`, `flow_redemptions`, `flow_reinvestment` | Money in (shares sold), out (redeemed) and dividends reinvested over the three months of the quarter, in US dollars |
+| `returns_pct` | Total returns of the ticker's share class for the three months, in percent |
+| `n_holdings` | Number of positions in the filing |
+| `holdings` | List of positions, largest first: `name`, `title`, `cusip`, `isin`, `ticker` (when the fund reports one), `lei`, `balance`, `units` (`NS` shares, `PA` principal, `NC` contracts), `currency`, `value_usd`, `pct_net_assets` (percent), `payoff` (`Long`/`Short`), `asset_cat` (`EC` equity, `DBT` debt, ...), `issuer_cat`, `country` |
+| `form`, `accession` | `NPORT-P` or `NPORT-P/A`, SEC accession number |
+
 ## Notes
 
 - The SEC requires automated requests to identify the sender with a name and contact email; no registration is needed.
 - Requests are throttled to the SEC limit of 10 per second, so long insider ranges for very active companies take a while.
 - `ftd` data is published twice a month, for the first and second half of each month, about two weeks after the period ends. Rows are stamped at the settlement date, so recent dates appear late.
 - `13f` filings are due 45 days after each quarter end. `value` is in US dollars for filings from 2023; earlier filings reported thousands of dollars. Large managers file thousands of positions: request a year or less at a time.
+- `nport`: funds report every month, but only the last month of each fiscal quarter is made public, about 60 days after it ends. Data from late 2019. A fund with thousands of positions (a total market index fund) returns about 5 MB a year: use `top` or a shorter range to stay under the 10 MB response limit. Money market funds file a different form and are not included.
 - All EDGAR content is free to reuse (SEC policy).

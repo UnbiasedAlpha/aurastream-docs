@@ -40,7 +40,7 @@ Use these values in the `source` field of your request:
 | `econcalendar` | [US Economic Calendar](econcalendar.md) | Release times: jobs, CPI, GDP, retail sales, FOMC | Contact email (for BLS) |
 | **Company data and positioning** | | | |
 | `finnhub` | [Finnhub](finnhub.md) | Company financials | Your Finnhub key |
-| `edgar` | [SEC EDGAR](edgar.md) | Insider trades, company financials, earnings filings, fails-to-deliver, 13F holdings | Contact email |
+| `edgar` | [SEC EDGAR](edgar.md) | Insider trades, company financials, earnings filings, fails-to-deliver, 13F and fund holdings | Contact email |
 | `cftc` | [CFTC](cftc.md) | Futures positioning (Commitments of Traders) | Not required |
 | **Trade flows** | | | |
 | `hmrc` | [UK Trade](hmrc.md) | UK imports and exports by product and country | Not required |
@@ -70,7 +70,7 @@ How to pass provider credentials is described in [Credentials](../getting-starte
 
 **Company Fundamentals**: Use `finnhub` for company metrics, and `edgar` for financials as reported to the SEC and the times earnings releases were filed.
 
-**Positioning & Flows**: Use `cftc` for who holds each futures market, and `edgar` for insider purchases and sales, fails-to-deliver and institutional (13F) holdings.
+**Positioning & Flows**: Use `cftc` for who holds each futures market, and `edgar` for insider purchases and sales, fails-to-deliver, institutional (13F) holdings, and mutual fund and ETF holdings and flows (`nport`).
 
 **Energy & Liquidity**: Use `eia` for oil and gas inventories, and `treasury` for government cash and auctions, which drive dollar liquidity.
 
