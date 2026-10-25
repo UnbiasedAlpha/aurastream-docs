@@ -21,8 +21,8 @@ Aurastream is a unified financial data API. Instead of integrating with each exc
 |---|---|
 | Crypto | Binance, Bybit, Kraken, Deribit, KuCoin, Hyperliquid, dYdX, Derive; with your own key: CoinAPI, CoinGecko; Nemeton order book signals |
 | Equities, FX and commodities | Yahoo Finance; with your own account: Alpaca, Polygon, Oanda, FirstRate Data, TradeStation, City Index |
-| Macro and energy | US Treasury, SDMX (BIS, ECB, IMF, OECD...), World Bank, US economic calendar; with a free key: FRED, EIA, BEA, US retail sales; with your own key: Nasdaq Data Link, Trading Economics |
-| Company data and positioning | SEC EDGAR, CFTC; with your own key: Finnhub |
+| Macro and energy | US Treasury, SDMX (BIS, ECB, IMF, OECD...), World Bank, US economic calendar, Fed statements and minutes, USDA WASDE, NOAA degree days; with a free key: FRED, EIA, BEA, US retail sales; with your own key: Nasdaq Data Link, Trading Economics |
+| Company data and positioning | SEC EDGAR, CFTC, EU net short positions, USAspending federal contracts, WARN layoff notices; with your own key: Finnhub |
 | Trade flows | UK, EU and Hong Kong trade; with a free key: US trade |
 | Alternative data | DefiLlama, GDELT, Open-Meteo, TSA checkpoint numbers; with your own key: Visual Crossing |
 

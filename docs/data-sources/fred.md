@@ -20,7 +20,7 @@ Get your API key at [FRED](https://fred.stlouisfed.org/docs/api/api_key.html) (f
 
 ## Ticker Format
 
-By default tickers are FRED series IDs:
+Tickers are FRED series IDs, for example:
 
 | Example | Series |
 |---|---|
@@ -28,27 +28,16 @@ By default tickers are FRED series IDs:
 | `UNRATE` | US unemployment rate |
 | `DFF` | Fed funds effective rate |
 | `GDPC1` | US real GDP |
-| `USACPIALLMINMEI` | US CPI (OECD) |
-
-### Country shortcuts
-
-Set the `bars` parameter to use 2-letter country codes instead of series IDs. Note that the United Kingdom is `UK`, not `GB`.
-
-| `bars` | Indicator | Country codes |
-|---|---|---|
-| `"cpi"` | Consumer price index | `AR`, `AT`, `AU`, `BE`, `BR`, `CA`, `CH`, `CL`, `CN`, `DE`, `DK`, `EU`, `FR`, `IN`, `IT`, `JP`, `KR`, `MX`, `NO`, `RU`, `TU` (Turkey), `UK`, `US`, `ZA` |
-| `"gdp"` | Real GDP | `AU`, `BR`, `CA`, `CH`, `CN`, `DE`, `ES`, `EU`, `FR`, `ID`, `IN`, `JP`, `KR`, `MX`, `NO`, `PL`, `RU`, `SA`, `SE`, `TR`, `UK`, `US`, `ZA` |
-| `"3mrate"` | 3-month interbank rate | `AU`, `CA`, `CN`, `DK`, `EU`, `IN`, `JP`, `KR`, `MX`, `NO`, `NZ`, `PL`, `SE`, `UK`, `US`, `ZA` |
-| `"10yrate"` | 10-year government bond yield | `AU`, `CA`, `CH`, `DE`, `DK`, `ES`, `EU`, `FR`, `GR`, `IN`, `IT`, `JP`, `KR`, `MX`, `NL`, `NO`, `NZ`, `PL`, `PT`, `SE`, `UK`, `US`, `ZA` |
 
 ## Parameters
 
 | Parameter | Values | Default | Description |
 |---|---|---|---|
-| `bars` | `"cpi"`, `"gdp"`, `"3mrate"`, `"10yrate"` | not set | Country shortcut (see above). Leave it out to use FRED series IDs |
 | `as_of` | `"realtime_start"`, `"date"` | `"realtime_start"` | Index rows by publication date or by the period the value describes |
 
 The `interval` parameter is accepted but ignored: each series comes at its native frequency (daily, monthly, quarterly...).
+
+FRED stops updating some series, for example when the original publisher changes or retires them. Check a series' last observation on its FRED page before relying on it.
 
 ## Response Format
 
@@ -89,22 +78,6 @@ response = requests.post(URL, headers=HEADERS, json={
 })
 ```
 
-### CPI for several countries
-
-```python
-response = requests.post(URL, headers=HEADERS, json={
-    "tickerlist": ["US", "UK", "DE", "JP"],
-    "start": "2020-01-01",
-    "end": "2025-06-01",
-    "interval": "1m",
-    "source": "fred",
-    "bars": "cpi",
-    "credentials": {
-        "key": "YOUR_FRED_KEY"
-    }
-})
-```
-
 ### Latest value for each period
 
 ```python
@@ -112,7 +85,7 @@ import pandas as pd
 
 data = response.json()
 rows = []
-for published, row in data["US"].items():
+for published, row in data["CPIAUCSL"].items():
     for u in row["updates"]:
         rows.append({"published": published, "period": u["reference_date"], "value": u["value"]})
 

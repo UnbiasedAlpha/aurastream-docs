@@ -79,10 +79,13 @@ nav:
           - Trading Economics: data-sources/tradingeconomics.md
           - US Economic Calendar: data-sources/econcalendar.md
           - BEA National Accounts: data-sources/bea.md
+          - Federal Reserve Texts: data-sources/fedtext.md
+          - USAspending: data-sources/usaspending.md
       - Company Data & Positioning:
           - Finnhub: data-sources/finnhub.md
           - SEC EDGAR: data-sources/edgar.md
           - CFTC: data-sources/cftc.md
+          - EU Net Short Positions: data-sources/netshort.md
       - Trade Flows:
           - UK Trade (HMRC): data-sources/hmrc.md
           - EU Trade (Eurostat): data-sources/comext.md
@@ -94,6 +97,9 @@ nav:
           - Open-Meteo: data-sources/openmeteo.md
           - Visual Crossing: data-sources/visualcrossing.md
           - TSA Checkpoint Numbers: data-sources/tsa.md
+          - WARN Layoff Notices: data-sources/warn.md
+          - USDA WASDE: data-sources/wasde.md
+          - NOAA Degree Days: data-sources/degreedays.md
   - Examples:
       - Python: examples/python.md
       - Macro Analysis: examples/macro-analysis.md

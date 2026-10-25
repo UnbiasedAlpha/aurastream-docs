@@ -1,6 +1,6 @@
 # Data Sources Overview
 
-Aurastream serves historical data from 39 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
+Aurastream serves historical data from 45 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
 
 ## Source Identifiers
 
@@ -38,10 +38,13 @@ Use these values in the `source` field of your request:
 | `tradingeconomics` | [Trading Economics](tradingeconomics.md) | Economic indicators by country | Your Trading Economics key |
 | `bea` | [BEA National Accounts](bea.md) | Consumer spending (PCE), PCE inflation, income, saving, GDP | Free BEA key |
 | `econcalendar` | [US Economic Calendar](econcalendar.md) | Release times: jobs, CPI, GDP, retail sales, FOMC | Contact email (for BLS) |
+| `fedtext` | [Federal Reserve Texts](fedtext.md) | FOMC statements, minutes and Fed speeches as text | Not required |
+| `usaspending` | [USAspending](usaspending.md) | Federal contract and grant spending by company | Not required |
 | **Company data and positioning** | | | |
 | `finnhub` | [Finnhub](finnhub.md) | Company financials | Your Finnhub key |
-| `edgar` | [SEC EDGAR](edgar.md) | Insider trades, company financials, earnings filings, fails-to-deliver, 13F and fund holdings | Contact email |
+| `edgar` | [SEC EDGAR](edgar.md) | Insider trades and planned sales, company financials, 8-K events, fails-to-deliver, 13D/13G stakes, 13F and fund holdings, fund votes | Contact email |
 | `cftc` | [CFTC](cftc.md) | Futures positioning (Commitments of Traders) | Not required |
+| `netshort` | [EU Net Short Positions](netshort.md) | Disclosed short positions in French, Dutch and Spanish shares | Not required |
 | **Trade flows** | | | |
 | `hmrc` | [UK Trade](hmrc.md) | UK imports and exports by product and country | Not required |
 | `comext` | [EU Trade](comext.md) | EU imports and exports by product and country | Not required |
@@ -53,6 +56,10 @@ Use these values in the `source` field of your request:
 | `openmeteo` | [Open-Meteo](openmeteo.md) | Historical weather by location | Not required |
 | `visualcrossing` | [Visual Crossing](visualcrossing.md) | Historical weather by location | Your Visual Crossing key |
 | `tsa` | [TSA Checkpoint Numbers](tsa.md) | Daily US air travelers screened | Not required |
+| `warn` | [WARN Layoff Notices](warn.md) | Mass layoff and closure notices (California, New Jersey) | Not required |
+| **Agriculture and weather** | | | |
+| `wasde` | [USDA WASDE](wasde.md) | Crop supply and demand projections, report by report | Not required |
+| `degreedays` | [NOAA Degree Days](degreedays.md) | Daily heating and cooling degree days, gas weighted | Not required |
 
 How to pass provider credentials is described in [Credentials](../getting-started/credentials.md).
 
@@ -66,16 +73,20 @@ How to pass provider credentials is described in [Credentials](../getting-starte
 
 **Futures History**: Use `firstrate` with your FirstRate Data account for long intraday histories of continuous or individual futures contracts.
 
-**Economic Data**: Use `fred` for macro indicators across many countries, and `sdmx` for series published by central banks and statistics agencies. `econcalendar` gives the scheduled release times of the main US figures and FOMC decisions.
+**Economic Data**: Use `fred` for macro indicators across many countries, and `sdmx` for series published by central banks and statistics agencies. `econcalendar` gives the scheduled release times of the main US figures and FOMC decisions, and `fedtext` the full text of FOMC statements, minutes and Fed speeches.
 
 **Company Fundamentals**: Use `finnhub` for company metrics, and `edgar` for financials as reported to the SEC and the times earnings releases were filed.
 
-**Positioning & Flows**: Use `cftc` for who holds each futures market, and `edgar` for insider purchases and sales, fails-to-deliver, institutional (13F) holdings, and mutual fund and ETF holdings and flows (`nport`).
+**Positioning & Flows**: Use `cftc` for who holds each futures market, `netshort` for hedge funds' disclosed short positions in European shares, and `edgar` for insider purchases, sales and planned sales (`144`), activist and 5%+ stakes (`13dg`), fails-to-deliver, institutional (13F) holdings, mutual fund and ETF holdings and flows (`nport`), and how funds vote (`npx`).
 
-**Energy & Liquidity**: Use `eia` for oil and gas inventories, and `treasury` for government cash and auctions, which drive dollar liquidity.
+**Energy & Liquidity**: Use `eia` for oil and gas inventories, `degreedays` for weather-driven heating and cooling demand, and `treasury` for government cash and auctions, which drive dollar liquidity.
 
 **Metals & Trade Flows**: Use `hmrc`, `comext`, `uscensus` and `hktrade` for gold, silver and base-metal shipments between countries (e.g. `gold:CH`), and `worldbank` for long monthly price histories.
 
 **Crypto Fundamentals & News**: Use `defillama` for stablecoin supply and DeFi activity, and `gdelt` for news coverage and tone on any topic.
+
+**Agriculture**: Use `wasde` for USDA's monthly corn, soybean, wheat, cotton and rice projections, by country and as they changed from report to report.
+
+**Companies and the Government**: Use `usaspending` for federal contract revenue by company and its largest new awards, and `warn` for layoff and closure notices.
 
 **Consumer Activity**: Use `uscensus` (`dataset: "retail"`) for monthly retail sales by store type, `bea` for personal consumption expenditures, income and saving, and `tsa` for daily US air travel. Consumer credit (Federal Reserve G.19) is in `fred` (`TOTALSL`, `REVOLSL`, `NONREVSL`). `econcalendar` gives the release times.

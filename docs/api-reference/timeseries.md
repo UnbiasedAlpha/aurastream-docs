@@ -55,7 +55,6 @@ Any other field in the body is passed to the source. Sources ignore fields they 
 | `instrument` | [Binance](../data-sources/binance.md) | `"spot"`, `"futures"` |
 | `instrument` | [Kraken](../data-sources/kraken.md) | `"futures"`, `"spot"` |
 | `bars` | Binance | `"candles"`, `"funding"` (futures only) |
-| `bars` | [FRED](../data-sources/fred.md) | not set (series IDs), `"cpi"`, `"gdp"`, `"3mrate"`, `"10yrate"` |
 | `category` | [Bybit](../data-sources/bybit.md) | `"linear"`, `"inverse"` |
 | `as_of` | FRED | `"realtime_start"`, `"date"` |
 | `as_of` | [CFTC](../data-sources/cftc.md) | `"release"`, `"report"` |
