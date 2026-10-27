@@ -100,6 +100,7 @@ nav:
           - WARN Layoff Notices: data-sources/warn.md
           - USDA WASDE: data-sources/wasde.md
           - NOAA Degree Days: data-sources/degreedays.md
+      - Nemeton Signals: data-sources/signals.md
   - Examples:
       - Python: examples/python.md
       - Macro Analysis: examples/macro-analysis.md

@@ -60,6 +60,8 @@ Use these values in the `source` field of your request:
 | **Agriculture and weather** | | | |
 | `wasde` | [USDA WASDE](wasde.md) | Crop supply and demand projections, report by report | Not required |
 | `degreedays` | [NOAA Degree Days](degreedays.md) | Daily heating and cooling degree days, gas weighted | Not required |
+| **Unbiased Alpha datasets** | | | |
+| `signals` | [Nemeton Signals](signals.md) | Crypto leverage and crowding, Fed tone, insider conviction, 8-K risk flags, fund flow pressure, federal contracts and layoffs per company, gas storage and crop surprises | Nemeton subscription |
 
 How to pass provider credentials is described in [Credentials](../getting-started/credentials.md).
 
@@ -90,3 +92,5 @@ How to pass provider credentials is described in [Credentials](../getting-starte
 **Companies and the Government**: Use `usaspending` for federal contract revenue by company and its largest new awards, and `warn` for layoff and closure notices.
 
 **Consumer Activity**: Use `uscensus` (`dataset: "retail"`) for monthly retail sales by store type, `bea` for personal consumption expenditures, income and saving, and `tsa` for daily US air travel. Consumer credit (Federal Reserve G.19) is in `fred` (`TOTALSL`, `REVOLSL`, `NONREVSL`). `econcalendar` gives the release times.
+
+**Derived Datasets**: Use `signals` with your Nemeton key for Unbiased Alpha's own series built from these records: crypto crowding, the tone of each Fed document, opportunistic insider trading, risk flags from 8-Ks, mutual fund flows per stock, federal contracts and layoffs per company, and gas storage and crop surprises, all stamped when they became available.
