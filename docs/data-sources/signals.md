@@ -8,7 +8,7 @@ Datasets built by Unbiased Alpha from public records: crypto leverage and crowdi
 "credentials": {"key": "your-nemeton-api-key"}
 ```
 
-Every value is stamped at the time it became available, so the series can be used in backtests without look-ahead. A missing or rejected key returns an error.
+Every value is stamped at the time it became available, so the series can be used in backtests without look-ahead (see [Point in time](#point-in-time) for the exceptions). A missing or rejected key returns an error.
 
 ## Example
 
@@ -151,6 +151,25 @@ Records name companies without an identifier, so names are matched to tickers by
 | `report`, `market_year` | Report month and market year |
 
 These are not surprises against analyst consensus: they are against our model (gas) or the previous report (crops).
+
+## Point in time
+
+Each row's timestamp is when its source made the data public. From 28 October 2026, every row also carries:
+
+| Field | Description |
+|---|---|
+| `first_seen` | When we first served the row (UTC); empty for rows served before tracking began |
+| `revised` | The last time the row's values changed after that, or empty |
+
+A row with `first_seen` well after its timestamp was backfilled; a row with `revised` was changed after it was first served. Keeping rows with `first_seen` up to a given date shows what was available then.
+
+Before 28 October 2026, the histories were rebuilt from the sources:
+
+- `event_flags`, `fund_flow_pressure`, `fed_tone`, the crops in `energy_ag` and `crypto_leverage` use each source's own release times and filing dates, so they match what was public at each timestamp.
+- `insider_conviction` is stamped at the end of the filing day, up to a day after the filing was public.
+- `gas_storage` uses EIA's current figures, which include later revisions.
+- `gov_contracts` uses USAspending's current figures, which include later changes to contracts.
+- `layoffs` is stamped at the notice date; the state lists are published days to weeks later.
 
 ## Notes
 
