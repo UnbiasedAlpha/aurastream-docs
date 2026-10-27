@@ -51,3 +51,11 @@ US tables use US units: million bushels for grains and soybeans, million acres, 
 - History starts with the July 2010 report, the first published in machine-readable form.
 - Reports come from the USDA National Agricultural Library's ESMIS archive. WASDE is a US government work in the public domain.
 - A request covering many years fetches each report once and keeps it, so the first long request takes longer (about 13 seconds for five years).
+
+## OpenBB
+
+This source is also available in the [OpenBB Platform](../getting-started/openbb.md) with `pip install openbb-aurastream`:
+
+```python
+obb.aurastream.wasde("corn:ending_stocks")
+```

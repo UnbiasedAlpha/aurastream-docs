@@ -149,3 +149,11 @@ US stock symbols (`AAPL`) or SEC CIK numbers (`320193`, `1164727` for Newmont).
 - `npx`: structured filings start in August 2024 (votes from July 2023). A large index fund's year is about 18 MB, so summaries over several years take a while: request two years or less.
 - `nport`: funds report every month, but only the last month of each fiscal quarter is made public, about 60 days after it ends. Data from late 2019. A fund with thousands of positions (a total market index fund) returns about 5 MB a year: use `top` or a shorter range to stay under the 10 MB response limit. Money market funds file a different form and are not included.
 - All EDGAR content is free to reuse (SEC policy).
+
+## OpenBB
+
+Fails-to-deliver is also available in the [OpenBB Platform](../getting-started/openbb.md) with `pip install openbb-aurastream`:
+
+```python
+obb.aurastream.fails_to_deliver("GME")
+```

@@ -78,3 +78,11 @@ response = requests.post(URL, headers=HEADERS, json={
     "instrument": "futures",
 })
 ```
+
+## OpenBB
+
+Funding rates are also available in the [OpenBB Platform](../getting-started/openbb.md) with `pip install openbb-aurastream`:
+
+```python
+obb.aurastream.funding_rates("BTCUSDT")
+```

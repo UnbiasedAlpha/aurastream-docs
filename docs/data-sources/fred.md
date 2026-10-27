@@ -92,3 +92,11 @@ for published, row in data["CPIAUCSL"].items():
 df = pd.DataFrame(rows).sort_values("published")
 latest = df.groupby("period")["value"].last()   # most recent revision of each period
 ```
+
+## OpenBB
+
+This source is also available in the [OpenBB Platform](../getting-started/openbb.md) with `pip install openbb-aurastream`:
+
+```python
+obb.aurastream.fred_vintages("CPIAUCSL")
+```

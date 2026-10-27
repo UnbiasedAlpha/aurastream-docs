@@ -43,6 +43,7 @@ nav:
       - Plans & Limits: getting-started/plans-and-limits.md
       - Billing & Renewals: getting-started/billing.md
       - Claude & ChatGPT (MCP): getting-started/mcp.md
+      - OpenBB: getting-started/openbb.md
   - API Reference:
       - Timeseries: api-reference/timeseries.md
       - Response Format: api-reference/response-format.md

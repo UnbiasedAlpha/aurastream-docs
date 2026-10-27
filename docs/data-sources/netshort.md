@@ -58,3 +58,11 @@ One row per published position, stamped at the position date. Several positions 
 - The registers are refreshed daily; Aurastream re-reads them at most hourly.
 - Holders can be individuals, so treat holder names as personal data under the GDPR.
 - France: source Autorité des marchés financiers (AMF), data.gouv.fr, Licence Ouverte 2.0. Netherlands: source AFM. Spain: this information can be obtained free of charge from the CNMV website (www.cnmv.es).
+
+## OpenBB
+
+This source is also available in the [OpenBB Platform](../getting-started/openbb.md) with `pip install openbb-aurastream`:
+
+```python
+obb.aurastream.net_short("ubisoft", country="FR")
+```
