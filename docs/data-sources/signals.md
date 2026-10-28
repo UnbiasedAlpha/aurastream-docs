@@ -126,17 +126,19 @@ Federal contract obligations per company and month, from USAspending (the 1,000 
 
 ### layoffs
 
-WARN mass-layoff and closure notices (California, New Jersey) filed by the company or its subsidiaries, at the notice date: `company` as filed, `employees`, `state`, `notice_type`, `effective_date`, `city`, `county` and `match`.
+WARN mass-layoff and closure notices (California, New Jersey) filed by the company or its subsidiaries: `company` as filed, `employees`, `state`, `notice_type`, `notice_date`, `received_date` (California's processed date), `effective_date`, `city`, `county` and `match`.
+
+Each row is stamped when the state published it, not at the notice date. California updates its list on Tuesday and Thursday afternoons with the notices processed up to the day before, so a row is stamped at 17:00 UTC on the first Tuesday or Thursday after its processed date; in archived copies of the list about 2% of notices appeared later still. New Jersey gives only the month a notice was posted and adds notices throughout that month, so its rows are stamped at the start of the following month.
 
 Records name companies without an identifier, so names are matched to tickers by Unbiased Alpha's own rules: whole names and leading words against the SEC company list, plus a curated list of subsidiaries. Matching favours precision: joint ventures and names that could belong to an unrelated listed company are left out.
 
 ### energy_ag
 
-`gas_storage`: the weekly EIA natural gas storage change, at the Thursday 10:30 New York release.
+`gas_storage`: the weekly EIA natural gas storage change as first released, at the actual release time (usually Thursday 10:30 New York; earlier or later in holiday weeks).
 
 | Field | Description |
 |---|---|
-| `storage`, `change` | Working gas in storage and its weekly change (Bcf) |
+| `storage`, `change` | Working gas in storage and its weekly change (Bcf), as first reported; `change` is EIA's implied flow, which leaves out reclassifications between categories |
 | `expected_change` | Change expected from weather and season, fitted on the previous five years only |
 | `surprise`, `surprise_z` | Change minus expected, and as a z-score |
 | `hdd_week`, `cdd_week`, `hdd_anomaly` | The week's heating and cooling degree days, and heating degree days against normal |
@@ -165,11 +167,10 @@ A row with `first_seen` well after its timestamp was backfilled; a row with `rev
 
 Before 28 October 2026, the histories were rebuilt from the sources:
 
-- `event_flags`, `fund_flow_pressure`, `fed_tone`, the crops in `energy_ag` and `crypto_leverage` use each source's own release times and filing dates, so they match what was public at each timestamp.
+- `event_flags`, `fund_flow_pressure`, `fed_tone`, `energy_ag` and `crypto_leverage` use each source's own release times and filing dates, so they match what was public at each timestamp.
 - `insider_conviction` is stamped at the end of the filing day, up to a day after the filing was public.
-- `gas_storage` uses EIA's current figures, which include later revisions.
 - `gov_contracts` uses USAspending's current figures, which include later changes to contracts.
-- `layoffs` is stamped at the notice date; the state lists are published days to weeks later.
+- `layoffs` is stamped at the publication time estimated from each state's schedule (see [layoffs](#layoffs)).
 
 ## Notes
 
