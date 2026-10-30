@@ -165,6 +165,8 @@ Each row's timestamp is when its source made the data public. From 28 October 20
 
 A row with `first_seen` well after its timestamp was backfilled; a row with `revised` was changed after it was first served. Keeping rows with `first_seen` up to a given date shows what was available then.
 
+The timestamp and `first_seen` are both times by which the data was public (the timestamp is an estimate where the source gives none, as for California layoffs), so the row can be treated as known from the earlier of the two (or from the timestamp when `first_seen` is empty). They differ where the source does not say exactly when it published: a New Jersey layoff notice is stamped at the start of the month after it was posted, which can be in the future, while `first_seen` shows the day we first had it.
+
 Before 28 October 2026, the histories were rebuilt from the sources:
 
 - `event_flags`, `fund_flow_pressure`, `fed_tone`, `energy_ag` and `crypto_leverage` use each source's own release times and filing dates, so they match what was public at each timestamp.
