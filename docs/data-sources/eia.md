@@ -35,6 +35,8 @@ EIA series IDs, or these built-in names:
 | `wti_spot`, `brent_spot` | `PET.RWTC.D`, `PET.RBRTE.D` | Crude spot prices (daily) |
 | `henry_hub_spot` | `NG.RNGWHHD.D` | Natural gas spot price (daily) |
 
+Hourly electricity grid data (EIA-930) as `grid:<respondent>:<type>`, for example `grid:US48:D` (Lower 48 demand) or `grid:ERCO:DF` (ERCOT day-ahead demand forecast). Types: `D` demand, `DF` day-ahead demand forecast, `NG` net generation, `TI` total interchange. Respondents are balancing authorities (`ERCO`, `PJM`, `MISO`, `CISO`, `NYIS`, `ISNE`, `SWPP`, ...), regions (`TEX`, `MIDA`, `CAL`, ...) or `US48`. Hours are UTC, from July 2015 (the Lower 48 total from 2019); the latest hours are incomplete and revised as grid operators report.
+
 ## Fields
 
 `value` and `units` (for example `MBBL` for thousand barrels). The `interval` parameter is ignored: each series comes at its own frequency.

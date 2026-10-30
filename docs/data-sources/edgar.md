@@ -56,7 +56,7 @@ US stock symbols (`AAPL`) or SEC CIK numbers (`320193`, `1164727` for Newmont).
 | `plan_10b5_1` | 1 if the trades were under a pre-arranged 10b5-1 plan |
 | `shares_owned_after`, `transaction_date`, `n_transactions` | Holdings afterwards, first trade date, number of trades |
 
-**`financials`**: one row per filing date, with each concept's value and its calendar period (e.g. `Revenues`, `Revenues_period: "CY2024Q2"`).
+**`financials`**: one row per filing date, with each concept's value and its calendar period (e.g. `Revenues`, `Revenues_period: "CY2024Q2"`). Each value comes from the filing that first reported it, and the row is stamped at that filing's date: later filings that repeat or restate the figure do not move it.
 
 **`earnings`**: one row per 8-K filing that reports results of operations (item 2.02), stamped when it became public. This is when a company's earnings release reached the SEC, usually minutes after the press release:
 
@@ -105,6 +105,7 @@ US stock symbols (`AAPL`) or SEC CIK numbers (`320193`, `1164727` for Newmont).
 | `fails` | Total fails-to-deliver balance, in shares |
 | `price` | Previous day's closing price |
 | `symbol`, `cusip`, `description` | Security |
+| `published` | When the SEC posted the half-month file holding the row (UTC): the earliest the row was public |
 
 **`13f`**: one row per 13F-HR filing (and amendments), stamped when it became public:
 

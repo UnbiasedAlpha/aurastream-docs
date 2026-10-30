@@ -1,6 +1,6 @@
 # Nemeton Signals
 
-Datasets built by Unbiased Alpha from public records: crypto leverage and crowding, the tone of the Federal Reserve, insider conviction, 8-K risk flags, mutual fund flow pressure, federal contracts and layoffs per company, and energy and agriculture surprises. They come with a Nemeton subscription.
+Datasets built by Unbiased Alpha from public records: crypto leverage and crowding, the tone of the Federal Reserve, insider conviction, 8-K risk flags, mutual fund flow pressure, federal contracts and layoffs per company, earnings surprises without analyst consensus, short crowding, Treasury auction strength, power demand surprises, and energy and agriculture surprises. They come with a Nemeton subscription.
 
 **Source:** `signals` | **Credentials:** your Nemeton API key
 
@@ -36,6 +36,10 @@ Every value is stamped at the time it became available, so the series can be use
 | `gov_contracts` | US stock tickers | Monthly | 2007 |
 | `layoffs` | US stock tickers | Per notice | 2004 (NJ), 2019 (CA) |
 | `energy_ag` | `gas_storage`, `corn`, `soybeans`, `wheat` | Weekly (gas), monthly (crops) | 2010 |
+| `earnings_surprise` | US stock tickers | Per quarterly report | 2009 (surprises from 2011) |
+| `short_crowding` | US stock tickers | Twice a month | December 2017 |
+| `treasury_auctions` | `auctions`, `2Y`, `3Y`, `5Y`, `7Y`, `10Y`, `20Y`, `30Y` | Per auction | 2008 |
+| `power_demand` | `US48` | Daily | 2019 |
 
 For stock datasets, a company with no record returns an empty series.
 
@@ -154,6 +158,54 @@ Records name companies without an identifier, so names are matched to tickers by
 
 These are not surprises against analyst consensus: they are against our model (gas) or the previous report (crops).
 
+### earnings_surprise
+
+Each company's quarterly diluted earnings per share and revenue from its XBRL filings to the SEC, as first reported, against the company's own history: no analyst consensus. One row per fiscal quarter, stamped at 22:00 New York on the filing date of the 10-Q or 10-K (EDGAR's cut-off; the earnings press release often comes days earlier).
+
+| Field | Description |
+|---|---|
+| `eps`, `revenue` | Diluted EPS (basic where diluted is not reported) and revenue, from the first filing that reported the quarter |
+| `sue` | EPS minus EPS four quarters earlier, over the standard deviation of that change in the previous 8 quarters (needs 6, and at least one cent), capped at ±10 |
+| `revenue_growth`, `revenue_surprise` | Revenue growth against four quarters earlier (log), and its distance from the previous 8 quarters' mean in standard deviations, capped at ±10 |
+| `period_end`, `fiscal_period`, `form`, `accession` | The quarter (as the company labels it) and the filing |
+
+Fourth quarters are rarely reported on their own: they are the fiscal year minus the first three quarters, stamped at the 10-K. Later restatements do not change a row: the first figure is the one that was public. Some filings tag EPS with the wrong scale (millions instead of dollars); `eps` shows the figure as filed, and the caps keep such filings from dominating the surprises.
+
+### short_crowding
+
+How crowded each stock's short side is, at each FINRA short interest settlement date (twice a month), stamped at FINRA's publication: 18:00 New York on the 8th business day after settlement (FINRA's schedule is 7).
+
+| Field | Description |
+|---|---|
+| `short_interest`, `avg_daily_volume`, `days_to_cover` | FINRA consolidated short interest, average daily volume and their ratio |
+| `si_change` | Log change of short interest from the previous settlement date |
+| `ftd_ratio`, `ftd_half` | Mean daily fails-to-deliver over the latest half-month the SEC had posted by publication, over average daily volume, and that half-month |
+| `crowding` | Mean of the cross-sectional z-scores (capped at 3) of log days to cover, `si_change` and log(1 + `ftd_ratio`) over every symbol FINRA reports that date; positive = crowded short |
+| `settlement_date` | The settlement date |
+
+### treasury_auctions
+
+Every 2- to 30-year nominal coupon auction (new issues and reopenings) since 2008, from the Treasury's results, stamped 5 minutes after the competitive bids close (usually 13:00 New York). `auctions` returns all tenors; `2Y` ... `30Y` one each.
+
+| Field | Description |
+|---|---|
+| `bid_to_cover` | Competitive bids over accepted |
+| `indirect_share`, `direct_share`, `dealer_share` | Each bidder group's share of the accepted competitive amount; dealers take what others do not |
+| `dispersion_bp` | High yield minus median yield, in basis points |
+| `z_*` | Each against the previous 8 auctions of the same tenor |
+| `weakness` | Mean of z(dealer share), z(dispersion), -z(bid to cover), -z(indirect share); positive = weaker than usual |
+| `tenor`, `security_term`, `reopening`, `cusip`, `offering_amt`, `high_yield`, `median_yield`, `auction_date` | The auction |
+
+### power_demand
+
+US Lower 48 electricity demand against the grid operators' own day-ahead forecast (EIA-930), per UTC day, stamped at 12:00 UTC the next day. Demand above forecast usually means weather the forecast missed, so more gas burned in power plants.
+
+| Field | Description |
+|---|---|
+| `demand_mwh`, `forecast_mwh` | Sums of the 24 hourly values (a day appears only with all of them) |
+| `surprise_pct` | Demand minus forecast, in % of the forecast |
+| `surprise_z` | `surprise_pct` against the previous 60 days |
+
 ## Point in time
 
 Each row's timestamp is when its source made the data public. From 28 October 2026, every row also carries:
@@ -165,7 +217,7 @@ Each row's timestamp is when its source made the data public. From 28 October 20
 
 A row with `first_seen` well after its timestamp was backfilled; a row with `revised` was changed after it was first served. Keeping rows with `first_seen` up to a given date shows what was available then.
 
-The timestamp and `first_seen` are both times by which the data was public (the timestamp is an estimate where the source gives none, as for California layoffs), so the row can be treated as known from the earlier of the two (or from the timestamp when `first_seen` is empty). They differ where the source does not say exactly when it published: a New Jersey layoff notice is stamped at the start of the month after it was posted, which can be in the future, while `first_seen` shows the day we first had it.
+The timestamp and `first_seen` are both times by which the data was public (the timestamp is an estimate where the source gives none, as for California layoffs), so the row can be treated as known from the earlier of the two (or from the timestamp when `first_seen` is empty). They differ where the source does not say exactly when it published: a New Jersey layoff notice is stamped at the start of the month after it was posted, which can be in the future, while `first_seen` shows the day we first had it. The exception is `gov_contracts`: a month is served while USAspending is still filling it in, about 70 days before its timestamp, so its early values are partial (`revised` marks the later changes); use its timestamp.
 
 Before 28 October 2026, the histories were rebuilt from the sources:
 
@@ -173,6 +225,9 @@ Before 28 October 2026, the histories were rebuilt from the sources:
 - `insider_conviction` is stamped at the end of the filing day, up to a day after the filing was public.
 - `gov_contracts` uses USAspending's current figures, which include later changes to contracts.
 - `layoffs` is stamped at the publication time estimated from each state's schedule (see [layoffs](#layoffs)).
+- `earnings_surprise` uses each figure as first filed, stamped at the end of the filing day.
+- `short_crowding` uses FINRA's figures with the publication lag above, and fails files only once the SEC had posted them.
+- `power_demand` uses EIA's current values, which include late corrections by grid operators.
 
 ## Notes
 
