@@ -1,0 +1,3734 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Unified financial data API — one endpoint, 28 data sources.">
+      
+      
+      
+        <link rel="canonical" href="https://aurastream.unbiased-alpha.com/docs/data-sources/signals/">
+      
+      
+        <link rel="prev" href="../degreedays/">
+      
+      
+        <link rel="next" href="../../examples/python/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Nemeton Signals - Aurastream Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nemeton-signals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Aurastream Documentation" class="md-header__button md-logo" aria-label="Aurastream Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo-icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Aurastream Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Nemeton Signals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/quickstart/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-reference/timeseries/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+  Data Sources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/python/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Aurastream Documentation" class="md-nav__button md-logo" aria-label="Aurastream Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo-icon.png" alt="logo">
+
+    </a>
+    Aurastream Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/credentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/plans-and-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plans & Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/billing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Billing & Renewals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude & ChatGPT (MCP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/openbb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenBB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/timeseries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timeseries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/response-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Response Format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Sources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Crypto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../binance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bybit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bybit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kraken/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kraken
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deribit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deribit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kucoin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KuCoin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nemeton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nemeton
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hyperliquid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hyperliquid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dydx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dYdX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lyra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Derive (Lyra)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coinapi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CoinAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coingecko/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CoinGecko
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equities, FX & Commodities
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Equities, FX & Commodities
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yahoo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yahoo Finance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alpaca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alpaca
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../polygon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polygon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oanda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oanda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firstrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FirstRate Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tradestation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradeStation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cityindex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    City Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro & Energy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Macro & Energy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fred/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FRED
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EIA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../treasury/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    US Treasury
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdmx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDMX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../worldbank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    World Bank
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nasdaq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nasdaq Data Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tradingeconomics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trading Economics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../econcalendar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    US Economic Calendar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bea/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BEA National Accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fedtext/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Federal Reserve Texts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usaspending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USAspending
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Company Data & Positioning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Company Data & Positioning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finnhub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Finnhub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edgar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SEC EDGAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cftc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFTC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netshort/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EU Net Short Positions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trade Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trade Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmrc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UK Trade (HMRC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comext/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EU Trade (Eurostat)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uscensus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    US Census (Trade, Retail)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hktrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hong Kong Trade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternative Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Alternative Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defillama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DefiLlama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gdelt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDELT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openmeteo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open-Meteo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualcrossing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Crossing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSA Checkpoint Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../warn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WARN Layoff Notices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wasde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USDA WASDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../degreedays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOAA Degree Days
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nemeton Signals
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nemeton Signals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crypto_leverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        crypto_leverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fed_tone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fed_tone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        event_flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider_conviction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        insider_conviction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fund_flow_pressure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fund_flow_pressure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gov_contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gov_contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        layoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#energy_ag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        energy_ag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earnings_surprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        earnings_surprise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short_crowding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        short_crowding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treasury_auctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        treasury_auctions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power_demand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        power_demand
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point-in-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point in time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/macro-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crypto_leverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        crypto_leverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fed_tone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fed_tone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        event_flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider_conviction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        insider_conviction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fund_flow_pressure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fund_flow_pressure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gov_contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gov_contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        layoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#energy_ag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        energy_ag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earnings_surprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        earnings_surprise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short_crowding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        short_crowding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treasury_auctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        treasury_auctions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power_demand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        power_demand
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point-in-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point in time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="nemeton-signals">Nemeton Signals<a class="headerlink" href="#nemeton-signals" title="Permanent link">&para;</a></h1>
+<p>Datasets built by Unbiased Alpha from public records: crypto leverage and crowding, the tone of the Federal Reserve, insider conviction, 8-K risk flags, mutual fund flow pressure, federal contracts and layoffs per company, earnings surprises without analyst consensus, short crowding, Treasury auction strength, power demand surprises, and energy and agriculture surprises. They come with a Nemeton subscription.</p>
+<p><strong>Source:</strong> <code>signals</code> | <strong>Credentials:</strong> your Nemeton API key</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&quot;credentials&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-nemeton-api-key&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>Every value is stamped at the time it became available, so the series can be used in backtests without look-ahead (see <a href="#point-in-time">Point in time</a> for the exceptions). A missing or rejected key returns an error.</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&quot;tickerlist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;BTCUSDT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ETHUSDT&quot;</span><span class="p">],</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-10-26&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1d&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;signals&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&quot;dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;crypto_leverage&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&quot;credentials&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YOUR_NEMETON_KEY&quot;</span><span class="p">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="datasets">Datasets<a class="headerlink" href="#datasets" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><code>dataset</code></th>
+<th>Tickers</th>
+<th>Frequency</th>
+<th>History</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>crypto_leverage</code> (default)</td>
+<td>Perpetuals, e.g. <code>BTCUSDT</code></td>
+<td>Hourly</td>
+<td>2020</td>
+</tr>
+<tr>
+<td><code>fed_tone</code></td>
+<td><code>statement</code>, <code>minutes</code>, <code>speeches</code>, <code>index</code></td>
+<td>Per document; daily index</td>
+<td>2006</td>
+</tr>
+<tr>
+<td><code>event_flags</code></td>
+<td>US stock tickers</td>
+<td>Per 8-K</td>
+<td>2004</td>
+</tr>
+<tr>
+<td><code>insider_conviction</code></td>
+<td>US stock tickers</td>
+<td>Per insider trade</td>
+<td>2006</td>
+</tr>
+<tr>
+<td><code>fund_flow_pressure</code></td>
+<td>US stock tickers</td>
+<td>Monthly</td>
+<td>2019</td>
+</tr>
+<tr>
+<td><code>gov_contracts</code></td>
+<td>US stock tickers</td>
+<td>Monthly</td>
+<td>2007</td>
+</tr>
+<tr>
+<td><code>layoffs</code></td>
+<td>US stock tickers</td>
+<td>Per notice</td>
+<td>2004 (NJ), 2019 (CA)</td>
+</tr>
+<tr>
+<td><code>energy_ag</code></td>
+<td><code>gas_storage</code>, <code>corn</code>, <code>soybeans</code>, <code>wheat</code></td>
+<td>Weekly (gas), monthly (crops)</td>
+<td>2010</td>
+</tr>
+<tr>
+<td><code>earnings_surprise</code></td>
+<td>US stock tickers</td>
+<td>Per quarterly report</td>
+<td>2009 (surprises from 2011)</td>
+</tr>
+<tr>
+<td><code>short_crowding</code></td>
+<td>US stock tickers</td>
+<td>Twice a month</td>
+<td>December 2017</td>
+</tr>
+<tr>
+<td><code>treasury_auctions</code></td>
+<td><code>auctions</code>, <code>2Y</code>, <code>3Y</code>, <code>5Y</code>, <code>7Y</code>, <code>10Y</code>, <code>20Y</code>, <code>30Y</code></td>
+<td>Per auction</td>
+<td>2008</td>
+</tr>
+<tr>
+<td><code>power_demand</code></td>
+<td><code>US48</code></td>
+<td>Daily</td>
+<td>2019</td>
+</tr>
+</tbody>
+</table>
+<p>For stock datasets, a company with no record returns an empty series.</p>
+<h3 id="crypto_leverage">crypto_leverage<a class="headerlink" href="#crypto_leverage" title="Permanent link">&para;</a></h3>
+<p>Hourly per perpetual:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>funding_rate</code>, <code>funding_annualized</code></td>
+<td>Binance funding rate, and annualized in %</td>
+</tr>
+<tr>
+<td><code>hl_funding_annualized</code>, <code>funding_spread_annualized</code></td>
+<td>Hyperliquid funding (annualized %) and Binance minus Hyperliquid</td>
+</tr>
+<tr>
+<td><code>basis_bps</code></td>
+<td>Perpetual premium over the index, in basis points</td>
+</tr>
+<tr>
+<td><code>oi</code>, <code>oi_value</code>, <code>oi_change_24h</code></td>
+<td>Open interest in contracts and USD, and its 24-hour change in %</td>
+</tr>
+<tr>
+<td><code>ls_account</code>, <code>ls_top_position</code>, <code>taker_buy_sell</code></td>
+<td>Long/short account ratio, top traders' long/short position ratio, taker buy/sell volume ratio</td>
+</tr>
+<tr>
+<td><code>z_funding</code>, <code>z_basis</code>, <code>z_oi_change</code>, <code>z_long_short</code></td>
+<td>Z-scores against the trailing 90 days (after 30 days of data)</td>
+</tr>
+<tr>
+<td><code>crowding_carry</code></td>
+<td>Mean of the funding and basis z-scores</td>
+</tr>
+<tr>
+<td><code>crowding_positioning</code></td>
+<td>Mean of the open interest and long/short z-scores</td>
+</tr>
+<tr>
+<td><code>crowding</code></td>
+<td>Mean of the two; positive = crowded long</td>
+</tr>
+</tbody>
+</table>
+<p>Funding and basis go back to 2020. Open interest and long/short ratios are collected from October 2026, so <code>crowding_positioning</code> starts once 30 days of them exist; until then <code>crowding</code> equals <code>crowding_carry</code>. Longer intervals keep the last hour of each period.</p>
+<h3 id="fed_tone">fed_tone<a class="headerlink" href="#fed_tone" title="Permanent link">&para;</a></h3>
+<p>Hawkish or dovish tone of every FOMC statement, set of minutes and speech by a Board member, from Unbiased Alpha's own word rules.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>score</code></td>
+<td>From -1 (dovish) to +1 (hawkish)</td>
+</tr>
+<tr>
+<td><code>hawkish</code>, <code>dovish</code></td>
+<td>Number of hawkish and dovish matches</td>
+</tr>
+<tr>
+<td><code>net_per_1000</code></td>
+<td>Hawkish minus dovish matches per 1,000 words</td>
+</tr>
+<tr>
+<td><code>words</code>, <code>title</code>, <code>url</code></td>
+<td>Length, title and link of the document</td>
+</tr>
+<tr>
+<td><code>similarity_prev</code>, <code>delta_score</code></td>
+<td>Statements only: similarity to the previous statement, and the tone of the sentences added minus those removed</td>
+</tr>
+<tr>
+<td><code>meeting</code>, <code>speaker</code></td>
+<td>Minutes and statements: the meeting; speeches: the speaker</td>
+</tr>
+</tbody>
+</table>
+<p><code>index</code> is a daily average of all documents with a 30-day half-life (<code>score</code>). Statements announcing rate hikes score +0.80 on average, holds +0.07 and cuts -0.34 (2006-2026).</p>
+<h3 id="event_flags">event_flags<a class="headerlink" href="#event_flags" title="Permanent link">&para;</a></h3>
+<p>Every 8-K since August 2004 at its SEC acceptance time:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>items</code></td>
+<td>8-K item codes</td>
+</tr>
+<tr>
+<td><code>flags</code></td>
+<td>Risk flags from the items: <code>restatement</code>, <code>auditor_change</code>, <code>delisting_notice</code>, <code>bankruptcy</code>, <code>debt_acceleration</code>, <code>impairment</code>, <code>cyber_incident</code>, <code>control_change</code>, <code>leadership_change</code>, <code>exit_costs</code></td>
+</tr>
+<tr>
+<td><code>severe</code></td>
+<td>Whether the 8-K carries a severe flag</td>
+</tr>
+<tr>
+<td><code>severe_events_90d</code></td>
+<td>The company's severe 8-Ks in the trailing 90 days</td>
+</tr>
+<tr>
+<td><code>event_date</code>, <code>form</code>, <code>accession</code>, <code>cik</code></td>
+<td>Event date, form type (8-K or 8-K/A), filing number and SEC company number</td>
+</tr>
+</tbody>
+</table>
+<h3 id="insider_conviction">insider_conviction<a class="headerlink" href="#insider_conviction" title="Permanent link">&para;</a></h3>
+<p>Every open-market purchase and sale by an insider (Form 4 codes P and S) since 2006, stamped at the end of the filing day (New York). Each insider is classified, after Cohen, Malloy and Pomorski (2012), as <code>routine</code> (traded in the same month in each of the three previous years), <code>opportunistic</code>, or <code>unclassified</code> (not enough history).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>owner</code>, <code>officer_title</code>, <code>is_director</code>, <code>is_officer</code>, <code>is_ten_percent_owner</code></td>
+<td>Who traded</td>
+</tr>
+<tr>
+<td><code>classification</code></td>
+<td><code>routine</code>, <code>opportunistic</code> or <code>unclassified</code></td>
+</tr>
+<tr>
+<td><code>buy_shares</code>, <code>buy_value</code>, <code>sell_shares</code>, <code>sell_value</code></td>
+<td>The filing's purchases and sales</td>
+</tr>
+<tr>
+<td><code>shares_owned_after</code>, <code>plan_10b5_1</code></td>
+<td>Holding after the trades, and whether they were under a 10b5-1 plan</td>
+</tr>
+<tr>
+<td><code>opp_buyers_30d</code>, <code>opp_buy_value_30d</code>, <code>opp_sellers_30d</code>, <code>opp_sell_value_30d</code></td>
+<td>Opportunistic buyers and sellers in the company over the trailing 30 days, and their value</td>
+</tr>
+<tr>
+<td><code>buy_conviction</code></td>
+<td>Opportunistic buyers over 30 days, with chief executives and finance chiefs counted twice</td>
+</tr>
+<tr>
+<td><code>transaction_date</code>, <code>filing_date</code>, <code>accession</code></td>
+<td>Dates and filing number</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fund_flow_pressure">fund_flow_pressure<a class="headerlink" href="#fund_flow_pressure" title="Permanent link">&para;</a></h3>
+<p>How much money is flowing into or out of the mutual funds and ETFs that hold a stock, from their N-PORT reports to the SEC (after Coval and Stafford 2007, Lou 2012). One row per month, stamped 61 days after it ends (the filing deadline), from the reports filed by then.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flow_pressure</code></td>
+<td>Holdings-weighted average flow of the funds holding the stock (sales + reinvestments - redemptions, over net assets); positive = holders taking money in</td>
+</tr>
+<tr>
+<td><code>pressure_usd</code></td>
+<td>Implied buying (+) or selling (-) if each fund scaled its position by its flow, in US dollars</td>
+</tr>
+<tr>
+<td><code>fire_sale_share</code>, <code>inflow_share</code></td>
+<td>Share of fund-held value in funds with flows below -5% or above +5%</td>
+</tr>
+<tr>
+<td><code>n_funds</code>, <code>fund_value</code></td>
+<td>Funds holding the stock and the value they hold (US dollars)</td>
+</tr>
+<tr>
+<td><code>report_month</code>, <code>cusip</code>, <code>name</code></td>
+<td>The month and the stock</td>
+</tr>
+</tbody>
+</table>
+<p>Only each fund's fiscal quarter-end report is public, so a month covers the funds whose quarter ends then: most funds in March, June, September and December, a third to a half in other months (see <code>n_funds</code>).</p>
+<h3 id="gov_contracts">gov_contracts<a class="headerlink" href="#gov_contracts" title="Permanent link">&para;</a></h3>
+<p>Federal contract obligations per company and month, from USAspending (the 1,000 largest contract recipients of each month since October 2007), summed over the company's contracting entities. Stamped 100 days after the month, because Defense contracts are published with a 90-day delay.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>obligations</code></td>
+<td>Contract obligations in the month (US dollars)</td>
+</tr>
+<tr>
+<td><code>ttm_obligations</code>, <code>yoy_growth</code></td>
+<td>Trailing 12 months, and its change against a year earlier</td>
+</tr>
+<tr>
+<td><code>momentum_3m</code></td>
+<td>Last 3 months against the 3 before</td>
+</tr>
+<tr>
+<td><code>n_recipients</code>, <code>recipients</code></td>
+<td>The company's contracting entities that month (largest first)</td>
+</tr>
+<tr>
+<td><code>match</code></td>
+<td>Least certain name match behind the month: <code>override</code>, <code>exact</code> or <code>prefix</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="layoffs">layoffs<a class="headerlink" href="#layoffs" title="Permanent link">&para;</a></h3>
+<p>WARN mass-layoff and closure notices (California, New Jersey) filed by the company or its subsidiaries: <code>company</code> as filed, <code>employees</code>, <code>state</code>, <code>notice_type</code>, <code>notice_date</code>, <code>received_date</code> (California's processed date), <code>effective_date</code>, <code>city</code>, <code>county</code> and <code>match</code>.</p>
+<p>Each row is stamped when the state published it, not at the notice date. California updates its list on Tuesday and Thursday afternoons with the notices processed up to the day before, so a row is stamped at 17:00 UTC on the first Tuesday or Thursday after its processed date; in archived copies of the list about 2% of notices appeared later still. New Jersey gives only the month a notice was posted and adds notices throughout that month, so its rows are stamped at the start of the following month.</p>
+<p>Records name companies without an identifier, so names are matched to tickers by Unbiased Alpha's own rules: whole names and leading words against the SEC company list, plus a curated list of subsidiaries. Matching favours precision: joint ventures and names that could belong to an unrelated listed company are left out.</p>
+<h3 id="energy_ag">energy_ag<a class="headerlink" href="#energy_ag" title="Permanent link">&para;</a></h3>
+<p><code>gas_storage</code>: the weekly EIA natural gas storage change as first released, at the actual release time (usually Thursday 10:30 New York; earlier or later in holiday weeks).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>storage</code>, <code>change</code></td>
+<td>Working gas in storage and its weekly change (Bcf), as first reported; <code>change</code> is EIA's implied flow, which leaves out reclassifications between categories</td>
+</tr>
+<tr>
+<td><code>expected_change</code></td>
+<td>Change expected from weather and season, fitted on the previous five years only</td>
+</tr>
+<tr>
+<td><code>surprise</code>, <code>surprise_z</code></td>
+<td>Change minus expected, and as a z-score</td>
+</tr>
+<tr>
+<td><code>hdd_week</code>, <code>cdd_week</code>, <code>hdd_anomaly</code></td>
+<td>The week's heating and cooling degree days, and heating degree days against normal</td>
+</tr>
+</tbody>
+</table>
+<p><code>corn</code>, <code>soybeans</code>, <code>wheat</code>: the US WASDE balance at each report.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ending_stocks</code>, <code>use_total</code>, <code>stocks_to_use</code></td>
+<td>This report's projection for the market year</td>
+</tr>
+<tr>
+<td><code>ending_stocks_prev</code>, <code>stocks_to_use_prev</code></td>
+<td>The same in the previous report</td>
+</tr>
+<tr>
+<td><code>revision</code>, <code>revision_pct</code>, <code>revision_z</code></td>
+<td>Change in ending stocks from the previous report, in % and as a z-score against five years of revisions</td>
+</tr>
+<tr>
+<td><code>report</code>, <code>market_year</code></td>
+<td>Report month and market year</td>
+</tr>
+</tbody>
+</table>
+<p>These are not surprises against analyst consensus: they are against our model (gas) or the previous report (crops).</p>
+<h3 id="earnings_surprise">earnings_surprise<a class="headerlink" href="#earnings_surprise" title="Permanent link">&para;</a></h3>
+<p>Each company's quarterly diluted earnings per share and revenue from its XBRL filings to the SEC, as first reported, against the company's own history: no analyst consensus. One row per fiscal quarter, stamped at 22:00 New York on the filing date of the 10-Q or 10-K (EDGAR's cut-off; the earnings press release often comes days earlier).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eps</code>, <code>revenue</code></td>
+<td>Diluted EPS (basic where diluted is not reported) and revenue, from the first filing that reported the quarter</td>
+</tr>
+<tr>
+<td><code>sue</code></td>
+<td>EPS minus EPS four quarters earlier, over the standard deviation of that change in the previous 8 quarters (needs 6, and at least one cent), capped at ±10</td>
+</tr>
+<tr>
+<td><code>revenue_growth</code>, <code>revenue_surprise</code></td>
+<td>Revenue growth against four quarters earlier (log), and its distance from the previous 8 quarters' mean in standard deviations, capped at ±10</td>
+</tr>
+<tr>
+<td><code>period_end</code>, <code>fiscal_period</code>, <code>form</code>, <code>accession</code></td>
+<td>The quarter (as the company labels it) and the filing</td>
+</tr>
+</tbody>
+</table>
+<p>Fourth quarters are rarely reported on their own: they are the fiscal year minus the first three quarters, stamped at the 10-K. Later restatements do not change a row: the first figure is the one that was public. Some filings tag EPS with the wrong scale (millions instead of dollars); <code>eps</code> shows the figure as filed, and the caps keep such filings from dominating the surprises.</p>
+<h3 id="short_crowding">short_crowding<a class="headerlink" href="#short_crowding" title="Permanent link">&para;</a></h3>
+<p>How crowded each stock's short side is, at each FINRA short interest settlement date (twice a month), stamped at FINRA's publication: 18:00 New York on the 8th business day after settlement (FINRA's schedule is 7).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>short_interest</code>, <code>avg_daily_volume</code>, <code>days_to_cover</code></td>
+<td>FINRA consolidated short interest, average daily volume and their ratio</td>
+</tr>
+<tr>
+<td><code>si_change</code></td>
+<td>Log change of short interest from the previous settlement date</td>
+</tr>
+<tr>
+<td><code>ftd_ratio</code>, <code>ftd_half</code></td>
+<td>Mean daily fails-to-deliver over the latest half-month the SEC had posted by publication, over average daily volume, and that half-month</td>
+</tr>
+<tr>
+<td><code>crowding</code></td>
+<td>Mean of the cross-sectional z-scores (capped at 3) of log days to cover, <code>si_change</code> and log(1 + <code>ftd_ratio</code>) over every symbol FINRA reports that date; positive = crowded short</td>
+</tr>
+<tr>
+<td><code>settlement_date</code></td>
+<td>The settlement date</td>
+</tr>
+</tbody>
+</table>
+<h3 id="treasury_auctions">treasury_auctions<a class="headerlink" href="#treasury_auctions" title="Permanent link">&para;</a></h3>
+<p>Every 2- to 30-year nominal coupon auction (new issues and reopenings) since 2008, from the Treasury's results, stamped 5 minutes after the competitive bids close (usually 13:00 New York). <code>auctions</code> returns all tenors; <code>2Y</code> ... <code>30Y</code> one each.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bid_to_cover</code></td>
+<td>Competitive bids over accepted</td>
+</tr>
+<tr>
+<td><code>indirect_share</code>, <code>direct_share</code>, <code>dealer_share</code></td>
+<td>Each bidder group's share of the accepted competitive amount; dealers take what others do not</td>
+</tr>
+<tr>
+<td><code>dispersion_bp</code></td>
+<td>High yield minus median yield, in basis points</td>
+</tr>
+<tr>
+<td><code>z_*</code></td>
+<td>Each against the previous 8 auctions of the same tenor</td>
+</tr>
+<tr>
+<td><code>weakness</code></td>
+<td>Mean of z(dealer share), z(dispersion), -z(bid to cover), -z(indirect share); positive = weaker than usual</td>
+</tr>
+<tr>
+<td><code>tenor</code>, <code>security_term</code>, <code>reopening</code>, <code>cusip</code>, <code>offering_amt</code>, <code>high_yield</code>, <code>median_yield</code>, <code>auction_date</code></td>
+<td>The auction</td>
+</tr>
+</tbody>
+</table>
+<h3 id="power_demand">power_demand<a class="headerlink" href="#power_demand" title="Permanent link">&para;</a></h3>
+<p>US Lower 48 electricity demand against the grid operators' own day-ahead forecast (EIA-930), per UTC day, stamped at 12:00 UTC the next day. Demand above forecast usually means weather the forecast missed, so more gas burned in power plants.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>demand_mwh</code>, <code>forecast_mwh</code></td>
+<td>Sums of the 24 hourly values (a day appears only with all of them)</td>
+</tr>
+<tr>
+<td><code>surprise_pct</code></td>
+<td>Demand minus forecast, in % of the forecast</td>
+</tr>
+<tr>
+<td><code>surprise_z</code></td>
+<td><code>surprise_pct</code> against the previous 60 days</td>
+</tr>
+</tbody>
+</table>
+<h2 id="point-in-time">Point in time<a class="headerlink" href="#point-in-time" title="Permanent link">&para;</a></h2>
+<p>Each row's timestamp is when its source made the data public. From 28 October 2026, every row also carries:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first_seen</code></td>
+<td>When we first served the row (UTC); empty for rows served before tracking began</td>
+</tr>
+<tr>
+<td><code>revised</code></td>
+<td>The last time the row's values changed after that, or empty</td>
+</tr>
+</tbody>
+</table>
+<p>A row with <code>first_seen</code> well after its timestamp was backfilled; a row with <code>revised</code> was changed after it was first served. Keeping rows with <code>first_seen</code> up to a given date shows what was available then.</p>
+<p>The timestamp and <code>first_seen</code> are both times by which the data was public (the timestamp is an estimate where the source gives none, as for California layoffs), so the row can be treated as known from the earlier of the two (or from the timestamp when <code>first_seen</code> is empty). They differ where the source does not say exactly when it published: a New Jersey layoff notice is stamped at the start of the month after it was posted, which can be in the future, while <code>first_seen</code> shows the day we first had it. The exception is <code>gov_contracts</code>: a month is served while USAspending is still filling it in, about 70 days before its timestamp, so its early values are partial (<code>revised</code> marks the later changes); use its timestamp.</p>
+<p>Before 28 October 2026, the histories were rebuilt from the sources:</p>
+<ul>
+<li><code>event_flags</code>, <code>fund_flow_pressure</code>, <code>fed_tone</code>, <code>energy_ag</code> and <code>crypto_leverage</code> use each source's own release times and filing dates, so they match what was public at each timestamp.</li>
+<li><code>insider_conviction</code> is stamped at the end of the filing day, up to a day after the filing was public.</li>
+<li><code>gov_contracts</code> uses USAspending's current figures, which include later changes to contracts.</li>
+<li><code>layoffs</code> is stamped at the publication time estimated from each state's schedule (see <a href="#layoffs">layoffs</a>).</li>
+<li><code>earnings_surprise</code> uses each figure as first filed, stamped at the end of the filing day.</li>
+<li><code>short_crowding</code> uses FINRA's figures with the publication lag above, and fails files only once the SEC had posted them.</li>
+<li><code>power_demand</code> uses EIA's current values, which include late corrections by grid operators.</li>
+</ul>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Company tickers are today's tickers from the SEC company list; a company that changed ticker is found under its current one.</li>
+<li>This is research data, not investment advice. Test it out of sample before relying on it.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/UnbiasedAlpha" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
