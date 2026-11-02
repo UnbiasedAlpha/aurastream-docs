@@ -82,6 +82,7 @@ that bar. Metrics marked *flow* compare each book with the one a minute earlier.
 | `static-orderflow-imbalance` | `StaticOrderFlowImbalance` | Net change in size at the top `level` levels, bid side against ask side |
 | `dollar-value-imbalance` | `DollarValueImbalance` | Net change in value resting at the top `level` levels, bid side against ask side, relative to the value resting there |
 | `quantity-imbalance` | `QuantityImbalance` | How far the top `level` levels moved in price since the previous book, weighted by their size |
+| `depth-ratio` | `DepthRatioBid`, `DepthRatioAsk`, `DepthRatio` | Liquidity change: size in the top `level` levels relative to the previous book, per side (0.8 = a fifth of it went, 1.3 = up 30%); `DepthRatio` compares the two sides, from -1 to 1, positive when bid liquidity grew more |
 | `liquidity-consumption-rate` | `LCRBid`, `LCRAsk` | Share of the previous book's size in the top `level` levels that has been taken or cancelled since |
 | `quote-intensity` | `QuoteIntensity` | Number of the top `level` levels whose size changed since the previous book: how busy the quotes are |
 
