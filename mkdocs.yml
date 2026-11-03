@@ -95,6 +95,7 @@ nav:
       - Alternative Data:
           - DefiLlama: data-sources/defillama.md
           - GDELT: data-sources/gdelt.md
+          - Google Search Volume: data-sources/googleads.md
           - Open-Meteo: data-sources/openmeteo.md
           - Visual Crossing: data-sources/visualcrossing.md
           - TSA Checkpoint Numbers: data-sources/tsa.md

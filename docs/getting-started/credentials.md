@@ -208,6 +208,30 @@ A free [CoinGecko](https://www.coingecko.com/en/api) Demo key (last 365 days), o
 }
 ```
 
+## Google Search Volume
+
+```json
+{
+    "credentials": {
+        "developer_token": "your-developer-token",
+        "client_id": "your-oauth-client-id",
+        "client_secret": "your-oauth-client-secret",
+        "refresh_token": "your-refresh-token",
+        "customer_id": "1234567890"
+    }
+}
+```
+
+| Field | Description |
+|---|---|
+| `developer_token` | Google Ads API developer token; its Google Cloud project needs Basic access or higher |
+| `client_id`, `client_secret` | OAuth client of that Google Cloud project |
+| `refresh_token` | OAuth refresh token for scope `https://www.googleapis.com/auth/adwords` |
+| `customer_id` | A Google Ads account the OAuth user can access (10 digits) |
+| `login_customer_id` | Optional: the manager account, when `customer_id` is reached through one |
+
+Apply for API access in the [Google Ads API Center](https://developers.google.com/google-ads/api/docs/api-policy/access-levels).
+
 ## Public Sources (No Credentials Needed)
 
 The following sources do not require credentials — omit the `credentials` field or pass `null`:

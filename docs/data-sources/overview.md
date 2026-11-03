@@ -1,6 +1,6 @@
 # Data Sources Overview
 
-Aurastream serves historical data from 45 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
+Aurastream serves historical data from 47 providers through a single API. Each source has its own ticker format, supported intervals, and credential requirements.
 
 ## Source Identifiers
 
@@ -53,6 +53,7 @@ Use these values in the `source` field of your request:
 | **Alternative data** | | | |
 | `defillama` | [DefiLlama](defillama.md) | Stablecoin supply, DeFi TVL, DEX volume, fees | Not required |
 | `gdelt` | [GDELT](gdelt.md) | News coverage and tone | Not required |
+| `googleads` | [Google Search Volume](googleads.md) | Monthly Google searches per keyword and country | Your Google Ads API access |
 | `openmeteo` | [Open-Meteo](openmeteo.md) | Historical weather by location | Not required |
 | `visualcrossing` | [Visual Crossing](visualcrossing.md) | Historical weather by location | Your Visual Crossing key |
 | `tsa` | [TSA Checkpoint Numbers](tsa.md) | Daily US air travelers screened | Not required |
@@ -86,6 +87,8 @@ How to pass provider credentials is described in [Credentials](../getting-starte
 **Metals & Trade Flows**: Use `hmrc`, `comext`, `uscensus` and `hktrade` for gold, silver and base-metal shipments between countries (e.g. `gold:CH`), and `worldbank` for long monthly price histories.
 
 **Crypto Fundamentals & News**: Use `defillama` for stablecoin supply and DeFi activity, and `gdelt` for news coverage and tone on any topic.
+
+**Search Interest**: Use `googleads` for how many people search Google for a keyword each month, e.g. a product, a brand or a ticker, by country.
 
 **Agriculture**: Use `wasde` for USDA's monthly corn, soybean, wheat, cotton and rice projections, by country and as they changed from report to report.
 
