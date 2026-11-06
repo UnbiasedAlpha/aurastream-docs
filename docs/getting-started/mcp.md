@@ -10,7 +10,7 @@ The Aurastream MCP server lets AI assistants that support the [Model Context Pro
 | `get_timeseries` | Calls `/timeseries` and returns a compact table per ticker: the most recent rows, 100 by default, up to 1000. |
 | `get_latest` | The most recent N bars per ticker, without picking dates. |
 
-All 37 sources in [Data Sources](../data-sources/overview.md) are available (version 0.1.2 or later):
+These sources from [Data Sources](../data-sources/overview.md) are available (version 0.1.2 or later):
 
 | Group | Sources |
 |---|---|

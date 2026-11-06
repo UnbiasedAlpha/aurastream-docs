@@ -1,6 +1,6 @@
 site_name: Aurastream Documentation
 site_url: https://aurastream.unbiased-alpha.com/docs/
-site_description: Unified financial data API — one endpoint, 28 data sources.
+site_description: Unified financial data API — one endpoint, 47 data sources.
 
 theme:
   name: material
